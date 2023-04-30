@@ -15,8 +15,10 @@
             <ul>
                 <li
                     class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
-                    <a href="#">Beranda</a>
+                    <a href="{{ route('index') }}">Beranda</a>
                 </li>
+
+                @guest
                 <li
                     class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
                     <a href="#lacak">Lacak Aduan</a>
@@ -29,6 +31,22 @@
                     class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300">
                     <a href="#about">Tentang Kami</a>
                 </li>
+                @endguest
+
+                @auth
+                <li
+                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
+                    <a href="#">Buat Aduan</a>
+                </li>
+                <li
+                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
+                    <a href="#cara">Riwayat</a>
+                </li>
+                <li
+                    class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300">
+                    <a href="{{ route('profile.show') }}">Pengaturan</a>
+                </li>
+                @endauth
             </ul>
         </div>
     </section>

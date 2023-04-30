@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('email', 50)->unique();
             $table->string('phone', 15);
-            $table->enum('gender', ['laki-laki', 'perempuan']);
             $table->text('address');
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();

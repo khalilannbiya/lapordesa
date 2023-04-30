@@ -10,15 +10,19 @@
         </div>
         <ul id="navList"
             class="fixed lg:static flex flex-col lg:flex-row justify-center lg:justify-end items-center gap-5 md:gap-9 lg:gap-7 top-0 right-[-600px] md:right-[-1000px] h-screen lg:h-auto w-3/4 z-20 lg:z-0 bg-pewter-blue lg:bg-transparent lg:text-secondary font-semibold transition-all duration-1000">
+
+            {{-- Before Login --}}
+            @guest
             <li>
                 <a href="#"
                     class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500 active">Beranda</a>
             </li>
             <li>
-                <a href="#" class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Lacak</a>
+                <a href="#lacak"
+                    class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Lacak</a>
             </li>
             <li>
-                <a href="#" class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Tentang
+                <a href="#about" class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Tentang
                     Kami</a>
             </li>
             <li>
@@ -29,10 +33,39 @@
                 <a href="{{ route('login') }}"
                     class="flex justify-center items-center w-32 md:w-40 lg:w-28 h-11 lg:h-9 md:text-lg lg:text-sm border-2 border-black active:border-vermillion active:shadow-xl active:bg-vermillion lg:hover:shadow-xl lg:hover:border-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500 bg-black lg:hover:bg-vermillion rounded-md text-white lg:hover:text-white">Login</a>
             </li>
+            @endguest
+
+
+            @auth
+            <li>
+                <a href="{{ route('index') }}"
+                    class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500 active">Beranda</a>
+            </li>
+
+            <li>
+                <a href="#" class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Buat
+                    Aduan</a>
+            </li>
+
+            <li>
+                <a href="#" class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Riwayat</a>
+            </li>
+
+            <li>
+                <a href="{{ route('profile.show') }}"
+                    class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Pengaturan</a>
+            </li>
+
+            {{-- Logout Button --}}
+            <li>
+                <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
+                    <button type="submit"
+                        class="flex justify-center items-center w-32 md:w-40 lg:w-28 h-11 lg:h-9 md:text-lg lg:text-sm border-2 border-black active:border-vermillion active:shadow-xl active:bg-vermillion lg:hover:shadow-xl lg:hover:border-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500 bg-black lg:hover:bg-vermillion rounded-md text-white lg:hover:text-white">Logout</button>
+                </form>
+            </li>
+            @endauth
         </ul>
-        {{-- <div class="nav-btn">
-            <a href="auth/logout" class="btn-login ms-2">Logout</a>
-        </div> --}}
         <div class="absolute right-6 z-30 md:right-9 lg:hidden" id="toggle">
             <svg xmlns="http://www.w3.org/2000/svg" id="iconToggle" class="icon icon-tabler icon-tabler-align-justified"
                 width="27" height="27" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none"
