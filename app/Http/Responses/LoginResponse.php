@@ -22,7 +22,7 @@ class LoginResponse implements LoginResponseContract
             $home = '/staff/dashboard';
         } else {
             // Role as a complainant
-            $home = '/home';
+            $home = '/';
         }
 
         return redirect()->intended($home);

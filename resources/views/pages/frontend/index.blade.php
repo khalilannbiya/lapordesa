@@ -1,7 +1,12 @@
 @extends('layouts.frontend')
 
 @section('title')
+@guest
+<title>LaporDesa</title>
+@endguest
+@auth
 <title>Beranda | LaporDesa</title>
+@endauth
 @endsection
 
 @section('content')
@@ -18,10 +23,18 @@
         dimulai dari partisipasi aktif masyarakat. Bergabunglah dalam sistem pengaduan ini untuk memperbaiki
         pelayanan desa dan membangun desa yang lebih baik bersama-sama.</p>
     <div class="flex flex-wrap-reverse gap-4 md:gap-7 lg:gap-6 justify-center font-semibold">
+
+        @guest
         <a href="#lacak"
             class="px-5 py-2 md:px-10 md:py-3 lg:text-lg border-2 border-black active:border-vermillion active:shadow-xl active:text-vermillion   md:text-xl rounded-md lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Lacak
             Aduan</a>
-        <a href="#"
+        @endguest
+
+        @auth
+        <a href="#lacak"
+            class="px-5 py-2 md:px-10 md:py-3 lg:text-lg border-2 border-black active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl rounded-md lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Riwayat</a>
+        @endauth
+        <a href="{{ auth()->user() ? '/complaint' : route('login') }}"
             class="px-5 py-2 md:px-10 md:py-3 lg:text-lg bg-black text-white border-2 border-black active:border-vermillion active:bg-vermillion active:shadow-xl  md:text-xl rounded-md lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Laporkan!</a>
     </div>
     <img class="absolute w-2/3 md:w-96 xl:w-[32rem] left-[-30%] md:-left-32 xl:-left-60 top-[3%] md:top-14 xl:top-9 -z-10"
@@ -30,6 +43,7 @@
         src="{{ asset('assets/icons/stars.png') }}" alt="">
 </section>
 
+@guest
 {{-- Input Unic Code --}}
 <section id="lacak" class="px-6 md:px-10 lg:px-24 2xl:px-48 py-16 md:py-28 lg:py-36 overflow-x-hidden md:bg-white">
     <div class="relative md:border-2 border-black md:py-11 md:px-8 lg:px-12 md:rounded-md md:shadow-4xl">
@@ -62,6 +76,7 @@
             src="{{ asset('assets/icons/star.png') }}" alt="Icon Star">
     </div>
 </section>
+@endguest
 
 {{-- Cards How To Report --}}
 <section id="cara"
