@@ -9,6 +9,22 @@ class Complaint extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'title',
+        'body',
+        'status',
+        'photo_url',
+        'slug',
+        'unic_code',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
