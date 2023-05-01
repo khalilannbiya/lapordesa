@@ -25,7 +25,7 @@
 </head>
 
 <body class="bg-champagne text-black">
-
+    @include('sweetalert::alert')
     @include('components.frontend.header')
 
     {{-- Main Content --}}
