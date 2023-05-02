@@ -16,7 +16,8 @@ class ComplaintController extends Controller
      */
     public function index()
     {
-        //
+        $complaints = Complaint::where('user_id', auth()->user()->id)->latest()->get();
+        return view('pages.frontend.history', compact('complaints'));
     }
 
     /**
@@ -56,7 +57,7 @@ class ComplaintController extends Controller
         ]);
 
         Alert::toast("<strong>Data Berhasil Dikirim!</strong>", 'success')->toHtml()->timerProgressBar();
-        return redirect()->route('complainant.complaints.create');
+        return redirect()->route('complainant.complaints.index');
     }
 
     /**
