@@ -58,7 +58,11 @@
             </a>
         </article>
         @empty
-        <h3>Kosong</h3>
+        <h3 class="mt-4 text-sm lg:text-base text-center leading-normal text-medium text-davys-grey">Sayang sekali anda
+            belum
+            mempunyai
+            aduan, <a href="{{ route('complainant.complaints.create') }}"><strong>Ayo
+                    Kirim Aduan!</strong></a></h3>
         @endforelse
 
     </div>
