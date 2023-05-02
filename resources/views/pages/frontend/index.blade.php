@@ -34,7 +34,7 @@
         <a href="#lacak"
             class="px-5 py-2 md:px-10 md:py-3 lg:text-lg border-2 border-black active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl rounded-md lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Riwayat</a>
         @endauth
-        <a href="{{ auth()->user() ? '/complaint' : route('login') }}"
+        <a href="{{ auth()->user() ? route('complainant.complaints.create') : route('login') }}"
             class="px-5 py-2 md:px-10 md:py-3 lg:text-lg bg-black text-white border-2 border-black active:border-vermillion active:bg-vermillion active:shadow-xl  md:text-xl rounded-md lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Laporkan!</a>
     </div>
     <img class="absolute w-2/3 md:w-96 xl:w-[32rem] left-[-30%] md:-left-32 xl:-left-60 top-[3%] md:top-14 xl:top-9 -z-10"
