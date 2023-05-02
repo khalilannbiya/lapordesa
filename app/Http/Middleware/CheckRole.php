@@ -22,7 +22,7 @@ class CheckRole
 
         $user = $request->user();
 
-        if ($user->role->name !== $role) {
+        if ($user->role->role !== $role) {
             return redirect()->back();
         }
 

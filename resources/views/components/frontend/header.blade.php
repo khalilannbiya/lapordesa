@@ -39,11 +39,12 @@
             @auth
             <li>
                 <a href="{{ route('index') }}"
-                    class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500 active">Beranda</a>
+                    class="{{ Route::current()->getName() == 'index' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500 active">Beranda</a>
             </li>
 
             <li>
-                <a href="#" class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Buat
+                <a href="{{ route('complainant.complaints.create') }}"
+                    class="{{ Route::current()->getName() == 'complainant.complaints.create' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Buat
                     Aduan</a>
             </li>
 

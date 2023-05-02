@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+
+    // Complainant
+    Route::middleware([
+        'role:complainant'
+    ])->name('complainant.')->group(function () {
+        Route::resource('complaints', ComplaintController::class);
+    });
+});
 
 Route::middleware([
     'auth:sanctum',
