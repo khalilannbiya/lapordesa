@@ -49,7 +49,8 @@
             </li>
 
             <li>
-                <a href="#" class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Riwayat</a>
+                <a href="{{ route('complainant.complaints.index') }}"
+                    class="{{ Route::current()->getName() == 'complainant.complaints.index' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Riwayat</a>
             </li>
 
             <li>
