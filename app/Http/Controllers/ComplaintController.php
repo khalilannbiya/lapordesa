@@ -52,7 +52,6 @@ class ComplaintController extends Controller
             'body' => $request->body,
             'status' => 'belum diproses',
             'photo_url' => $photo,
-            'slug' => Str::slug($request->title),
             'unic_code' => $randomNumber,
         ]);
 
@@ -63,9 +62,9 @@ class ComplaintController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Complaint $complaint)
     {
-        //
+        return view('pages.frontend.detail', compact('complaint'));
     }
 
     /**

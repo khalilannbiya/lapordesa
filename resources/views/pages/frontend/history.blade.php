@@ -29,7 +29,7 @@
         @forelse ($complaints as $complaint)
         <article
             class="group border-2 border-black rounded-lg transition-all duration-500 hover:shadow-[7px_7px_0px_#81ADC8] lg:hover:shadow-[10px_10px_0px_#81ADC8] md:mt-7 lg:mt-0 cursor-pointer md:basis-80 lg:basis-[48%] lg:p-4">
-            <a href="">
+            <a href="{{ route('complainant.complaints.show', $complaint->id) }}">
                 <div class="flex flex-col lg:flex-row lg:items-center gap-2 md:gap-5 lg:gap-4">
                     <img class="w-full lg:w-40 h-40 lg:h-auto object-cover object-center lg:rounded-lg lg:aspect-square"
                         src="{{ $complaint->photo_url ? Storage::url($complaint->photo_url) : 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' }}"
@@ -53,7 +53,7 @@
                         {{ $complaint->category->category }}
                     </h6>
                     {{-- Show Status Complaint --}}
-                    @include('components.frontend.conditional-statement.show-status')
+                    @include('components.frontend.conditional-statement.show-status-card')
                 </div>
             </a>
         </article>

@@ -23,7 +23,7 @@ class Complaint extends Model
         'body',
         'status',
         'photo_url',
-        'slug',
+        'response',
         'unic_code',
     ];
 
