@@ -104,4 +104,4 @@ function shortenText(elementSelector, maxLength, elipsis) {
 
 shortenText(".report-title", 15, true);
 shortenText(".report-body", 60, true);
-shortenText(".detail-title", 50, false);
+shortenText(".detail-title", 28, false);

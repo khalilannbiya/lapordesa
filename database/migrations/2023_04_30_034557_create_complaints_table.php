@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('title', 50);
             $table->text('body');
             $table->enum('status', ['belum diproses', 'sedang diproses', 'selesai']);
+            $table->text('response')->nullable();
             $table->string('photo_url')->nullable();
-            $table->string('slug');
             $table->string('unic_code', 6);
             $table->softDeletes();
             $table->timestamps();
