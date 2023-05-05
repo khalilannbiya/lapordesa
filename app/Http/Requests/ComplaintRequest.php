@@ -29,4 +29,20 @@ class ComplaintRequest extends FormRequest
             'photo' => 'required|image',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Judul tidak boleh kosong!',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter!',
+            'body.required' => 'Isi aduan tidak boleh kosong!',
+            'category.required' => 'Kategori tidak boleh kosong!',
+            'photo.image' => 'File harus berupa foto!',
+        ];
+    }
 }

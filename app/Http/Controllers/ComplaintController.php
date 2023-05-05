@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Complaint;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\ComplaintRequest;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,9 +13,16 @@ class ComplaintController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $complaints = Complaint::where('user_id', auth()->user()->id)->latest()->get();
+        if ($request->has('keyword')) {
+            $complaints = Complaint::where('user_id', auth()->user()->id)
+                ->where('title', 'like', '%' . $request->keyword . '%')
+                ->orWhere('unic_code', $request->keyword)
+                ->get();
+        } else {
+            $complaints = Complaint::where('user_id', auth()->user()->id)->latest()->get();
+        }
         return view('pages.frontend.history', compact('complaints'));
     }
 
