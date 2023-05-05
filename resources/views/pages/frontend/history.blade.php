@@ -22,8 +22,20 @@
     <div>
         <hr class="mt-5 md:mt-7 lg:mt-8 border-1 border-davys-grey">
     </div>
+
+    <form class="mt-5 md:flex md:justify-center md:flex-col md:items-center"
+        action="{{ route('complainant.complaints.index') }}" method="GET">
+        <input
+            class="block mt-2 w-full md:w-1/2 rounded transition duration-500 ease-in-out ring-1 ring-black focus:outline-none focus:ring-2 focus:ring-vermillion focus:border-transparent"
+            type="text" name="keyword" placeholder="Masukkan keyword/kode unik">
+        <div class="mt-5 lg:mt-9 flex justify-center">
+            <button type="submit" class="font-bold lg:text-base px-5 lg:px-9 py-2 lg:py-3 rounded-md bg-black text-white active:bg-vermillion active:shadow-lg lg:hover:bg-vermillion lg:hover:shadow-lg
+                ">Cari Aduan</button>
+        </div>
+    </form>
+
     <div
-        class="flex flex-col md:flex-row md:flex-wrap gap-7 md:gap-0 lg:gap-5 md:justify-around lg:justify-center mt-5 md:mt-7 lg:mt-8">
+        class="flex flex-col md:flex-row md:flex-wrap gap-7 md:gap-0 lg:gap-5 md:justify-around lg:justify-center mt-7 md:mt-8 lg:mt-10">
 
         {{-- Cards History of Reported --}}
         @forelse ($complaints as $complaint)
@@ -39,7 +51,7 @@
                             $complaint->created_at->format('H:i, d-m-Y')
                             }}</h6>
                         <h2
-                            class="report-title text-xl lg:text-2xl text-black group-active:text-vermillion group-hover:text-vermillion group-hover:transition-all group-hover:duration-500  font-bold">
+                            class="report-title capitalize text-xl lg:text-2xl text-black group-active:text-vermillion group-hover:text-vermillion group-hover:transition-all group-hover:duration-500  font-bold">
                             {{ $complaint->title }}
                         </h2>
                         <hr class="border-1 border-davys-grey">
