@@ -26,7 +26,7 @@ class ComplaintRequest extends FormRequest
             'title' => 'required|string|max:50',
             'body' => 'required|string',
             'category' => 'required|numeric',
-            'photo' => 'required|image',
+            'photo' => 'image',
         ];
     }
 
