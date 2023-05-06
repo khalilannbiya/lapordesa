@@ -47,6 +47,8 @@ class ComplaintController extends Controller
             $randomNumber = random_int(000000, 999999);
         }
 
+        $photo = null;
+
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo')->storePublicly("photos", "public");
         }

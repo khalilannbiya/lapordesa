@@ -17,7 +17,6 @@ toggle.addEventListener("click", function () {
 // Change the width and height in the icon toggle when the screen width is that of a tablet screen.
 const widthOfScreen = window.innerWidth;
 if (widthOfScreen >= 768) {
-    console.log("hallo");
     document.getElementById("iconToggle").setAttribute("width", "36");
     document.getElementById("iconToggle").setAttribute("height", "36");
 }
