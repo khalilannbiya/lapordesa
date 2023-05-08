@@ -55,7 +55,7 @@
 
             <li>
                 <a href="{{ route('profile.show') }}"
-                    class="md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Pengaturan</a>
+                    class="{{ Route::current()->getName() == 'profile.show' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Pengaturan</a>
             </li>
 
             {{-- Logout Button --}}
