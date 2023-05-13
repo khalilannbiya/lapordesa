@@ -33,15 +33,13 @@ Data Aduan
     // AJAX Datatable
     var datatable = $('#crudTable').DataTable({
         // responsive: true,
-        // autoFill: true,
         scrollX: 200,
-        deferRender: true,
         scroller: true,
+        order: [[3, 'desc']],
         ajax:{
             url:'{!! url()->current() !!}'
         },
         columns:[
-            // {data:'id', name:'id', width:'5%'},
             {data:'title', name:'title', orderable:false, width:'20%'},
             {data:'category.category', name:'category.category', orderable:false, width:'15%'},
             {data:'status', name:'status', orderable:false, width:'15%'},

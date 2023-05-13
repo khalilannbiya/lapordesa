@@ -38,6 +38,8 @@ Route::middleware([
     ])->name('staff.')->prefix('staff')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/complaints', [AdminController::class, 'index'])->name('complaints.index');
+        Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show');
+        Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy');
     });
 });
 

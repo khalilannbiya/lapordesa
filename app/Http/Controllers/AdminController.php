@@ -16,6 +16,21 @@ class AdminController extends Controller
         if (request()->ajax()) {
             $query = Complaint::with(['category'])->get();
             return DataTables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                    <div>
+                        <a href="' . route('staff.complaints.show', $item->id) . '" class="inline-flex items-center justify-between mr-2 px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" aria-label="Like">
+                            <i class="ti ti-eye-filled"></i>
+                        </a>
+                        <form action="' . route('staff.complaints.destroy', $item->id) . '" method="post" class="inline-block">
+                            <button type="submit" class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
+                                <i class="ti ti-trash-filled"></i>
+                            </button>
+                        ' . method_field('delete') . csrf_field() . '
+                        </form>
+                    </div>
+                ';
+                })
                 ->editColumn('title', function ($item) {
                     return "<p style='color:#fdfdfd; text-transform: capitalize; font-weight: 600;'>$item->title</p>";
                 })
@@ -33,7 +48,7 @@ class AdminController extends Controller
                 ->editColumn('created_at', function ($item) {
                     return DATE_FORMAT($item->created_at, "H:i, d/m/Y");
                 })
-                ->rawColumns(['status', 'title'])
+                ->rawColumns(['status', 'title', 'action'])
                 ->make();
         }
         return view('pages.admin.index');

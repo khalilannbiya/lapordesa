@@ -9,6 +9,9 @@
 
     @include('components.admin.style')
 
+    @vite('resources/css/app.css')
+
+
     <!--- Tambahkan setelah app.css --->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
@@ -124,6 +127,8 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
 
         {{-- Sidebar --}}

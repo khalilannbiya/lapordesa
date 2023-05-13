@@ -72,7 +72,11 @@ class ComplaintController extends Controller
      */
     public function show(Complaint $complaint)
     {
-        return view('pages.frontend.detail', compact('complaint'));
+        if (auth()->user()->role->role === 'complainant') {
+            return view('pages.frontend.detail', compact('complaint'));
+        } else {
+            return view('pages.admin.detail', compact('complaint'));
+        }
     }
 
     /**
@@ -94,8 +98,11 @@ class ComplaintController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Complaint $complaint)
     {
-        //
+        $complaint->delete();
+
+        Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->route('staff.complaints.index');
     }
 }
