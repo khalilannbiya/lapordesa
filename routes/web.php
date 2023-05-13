@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ComplaintController;
-use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,14 @@ Route::middleware([
         'role:complainant'
     ])->name('complainant.')->group(function () {
         Route::resource('complaints', ComplaintController::class);
+    });
+
+    // Complainant
+    Route::middleware([
+        'role:staff'
+    ])->name('staff.')->prefix('staff')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/complaints', [AdminController::class, 'index'])->name('complaints.index');
     });
 });
 

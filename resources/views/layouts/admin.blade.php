@@ -14,6 +14,20 @@
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 
     <style>
+        .dataTables_wrapper {
+            background-color: rgb(26, 28, 35);
+            color: #969496;
+            padding: 2rem
+        }
+
+        .dataTables_wrapper label {
+            color: #969496;
+        }
+
+        tbody tr {
+            background-color: rgb(26, 28, 35) !important;
+        }
+
         /*Form fields*/
         .dataTables_wrapper select,
         .dataTables_wrapper .dataTables_filter input {
@@ -122,7 +136,7 @@
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                        Dashboard
+                        @yield('title-page')
                     </h2>
                     {{-- Content --}}
                     @yield('content')
@@ -133,7 +147,7 @@
     @include('components.admin.script')
 
     <!--- Tambahkan setelah script --->
-    {{ $script ?? '' }}
+    @stack('script')
 </body>
 
 </html>
