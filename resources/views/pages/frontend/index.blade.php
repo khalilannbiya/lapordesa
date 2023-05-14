@@ -31,8 +31,10 @@
         @endguest
 
         @auth
+        @if (auth()->user()->role->role === 'complainant')
         <a href="{{ route('complainant.complaints.index') }}"
             class="px-5 py-2 md:px-10 md:py-3 lg:text-lg border-2 border-black active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl rounded-md lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Riwayat</a>
+        @endif
         @endauth
         <a href="{{ auth()->user() ? route('complainant.complaints.create') : route('login') }}"
             class="px-5 py-2 md:px-10 md:py-3 lg:text-lg bg-black text-white border-2 border-black active:border-vermillion active:bg-vermillion active:shadow-xl  md:text-xl rounded-md lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Laporkan!</a>

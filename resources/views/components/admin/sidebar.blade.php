@@ -6,10 +6,14 @@
         </a>
         <ul class="mt-6">
             <li class="relative px-6 py-3">
+
+                @if (Route::current()->getName() == 'staff.dashboard.index')
                 <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
-                <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                    href="index.html">
+                @endif
+
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ Route::current()->getName() == 'staff.dashboard.index' ? 'text-gray-800 dark:text-gray-100' : '' }}"
+                    href="{{ route('staff.dashboard.index') }}">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path
@@ -22,8 +26,14 @@
         </ul>
         <ul>
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="forms.html">
+
+                @if (Route::current()->getName() == 'staff.complaints.index')
+                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                    aria-hidden="true"></span>
+                @endif
+
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ Route::current()->getName() == 'staff.complaints.index' ? 'text-gray-800 dark:text-gray-100' : '' }}"
+                    href="{{ route('staff.complaints.index') }}">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path
@@ -132,10 +142,14 @@
         </a>
         <ul class="mt-6">
             <li class="relative px-6 py-3">
+
+                @if (Route::current()->getName() == 'staff.dashboard.index')
                 <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
-                <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                    href="index.html">
+                @endif
+
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ Route::current()->getName() == 'staff.dashboard.index' ? 'text-gray-800 dark:text-gray-100' : '' }}"
+                    href="{{ route('staff.dashboard.index') }}">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path
@@ -148,8 +162,14 @@
         </ul>
         <ul>
             <li class="relative px-6 py-3">
-                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="forms.html">
+
+                @if (Route::current()->getName() == 'staff.complaints.index')
+                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                    aria-hidden="true"></span>
+                @endif
+
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ Route::current()->getName() == 'staff.complaints.index' ? 'text-gray-800 dark:text-gray-100' : '' }}"
+                    href="{{ route('staff.complaints.index') }}">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path

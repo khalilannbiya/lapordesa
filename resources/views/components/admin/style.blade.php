@@ -4,6 +4,9 @@
 <!-- favicon -->
 <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
 
+<!-- icon tabler -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
 <!-- Style -->
 <link rel="stylesheet" href="{{ asset('./assets/css/tailwind.output.css')}}" />
 
