@@ -89,4 +89,19 @@ Detail Aduan
         </p>
     </div>
 </div>
+<div class="flex flex-col flex-wrap mb-8 space-y-4 md:flex-row md:items-end md:space-x-4">
+    <button @click="openModal"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-edit"></i>
+        <span>Berikan Response</span>
+    </button>
+</div>
+
+{{-- Modal for filling out response form --}}
+@include('components.admin.modal.modal-response')
 @endsection
+
+@push('script')
+<!-- You need focus-trap.js to make the modal accessible -->
+<script src="./assets/js/focus-trap.js" defer></script>
+@endpush

@@ -39,6 +39,7 @@ Route::middleware([
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/complaints', [AdminController::class, 'index'])->name('complaints.index');
         Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show');
+        Route::put('/complaints/{complaint}/response', [ComplaintController::class, 'updateResponse'])->name('complaints.update-response');
         Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy');
     });
 });

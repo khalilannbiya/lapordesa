@@ -105,4 +105,22 @@ class ComplaintController extends Controller
         Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
         return redirect()->route('staff.complaints.index');
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateResponse(Request $request, Complaint $complaint)
+    {
+        $request->validate([
+            'response' => 'required|string',
+        ]);
+
+
+        $data = $request->all();
+
+        $complaint->update($data);
+
+        Alert::toast("<strong>Anda sudah memberikan respon!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->back();
+    }
 }
