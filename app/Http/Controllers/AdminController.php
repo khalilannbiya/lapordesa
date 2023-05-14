@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Complaint::with(['category'])->get();
+            $query = Complaint::with(['category'])->latest()->get();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
@@ -46,7 +46,7 @@ class AdminController extends Controller
                     return $statusEdited;
                 })
                 ->editColumn('created_at', function ($item) {
-                    return DATE_FORMAT($item->created_at, "H:i, d/m/Y");
+                    return DATE_FORMAT($item->created_at, "Y/m/d, H:i");
                 })
                 ->rawColumns(['status', 'title', 'action'])
                 ->make();

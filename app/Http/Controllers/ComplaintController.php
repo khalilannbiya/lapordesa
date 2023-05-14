@@ -19,7 +19,7 @@ class ComplaintController extends Controller
             $complaints = Complaint::where('user_id', auth()->user()->id)
                 ->where('title', 'like', '%' . $request->keyword . '%')
                 ->orWhere('unic_code', $request->keyword)
-                ->get();
+                ->latest()->get();
         } else {
             $complaints = Complaint::where('user_id', auth()->user()->id)->latest()->get();
         }
@@ -43,8 +43,10 @@ class ComplaintController extends Controller
     {
         // Generate Bilangan Random
         $randomNumber = random_int(000000, 999999);
+        $randomNumber = str_pad($randomNumber, 6, '0', STR_PAD_LEFT);
         while (Complaint::where('unic_code', $randomNumber)->exists()) {
             $randomNumber = random_int(000000, 999999);
+            $randomNumber = str_pad($randomNumber, 6, '0', STR_PAD_LEFT);
         }
 
         $photo = null;
@@ -75,7 +77,12 @@ class ComplaintController extends Controller
         if (auth()->user()->role->role === 'complainant') {
             return view('pages.frontend.detail', compact('complaint'));
         } else {
-            return view('pages.admin.detail', compact('complaint'));
+            $status = [
+                'belum diproses',
+                'sedang diproses',
+                'selesai'
+            ];
+            return view('pages.admin.detail', compact('complaint', 'status'));
         }
     }
 
@@ -121,6 +128,23 @@ class ComplaintController extends Controller
         $complaint->update($data);
 
         Alert::toast("<strong>Anda sudah memberikan respon!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->back();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateStatus(Request $request, Complaint $complaint)
+    {
+        $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $data = $request->all();
+
+        $complaint->update($data);
+
+        Alert::toast("<strong>Berhasil Ubah Status!</strong>", 'success')->toHtml()->timerProgressBar();
         return redirect()->back();
     }
 }
