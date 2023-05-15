@@ -21,7 +21,7 @@ class UserController extends Controller
                 ->addColumn('action', function ($item) {
                     return '
                     <div>
-                        <a href="' . route('') . '" class="inline-flex items-center justify-between mr-2 px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" aria-label="Like">
+                        <a href="' . route('staff.users.show', $item->id) . '" class="inline-flex items-center justify-between mr-2 px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" aria-label="Like">
                             <i class="ti ti-eye-filled"></i>
                         </a>
                     </div>
@@ -52,9 +52,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('pages.admin.detail-user', compact('user'));
     }
 
     /**
