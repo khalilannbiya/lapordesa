@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Complaint;
 
 class DashboardController extends Controller
 {
@@ -11,7 +12,19 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.dashboard');
+        // Jumlah data complaint dengan status "belum diproses"
+        $unprocessedCount = Complaint::where('status', 'belum diproses')->count();
+
+        // Jumlah data complaint dengan status "sedang diproses"
+        $processingCount = Complaint::where('status', 'sedang diproses')->count();
+
+        // Jumlah data complaint dengan status "telah selesai"
+        $completedCount =  Complaint::where('status', 'selesai')->count();
+
+        // Jumlah data keseluruhan
+        $totalCount = Complaint::query()->count();
+
+        return view('pages.admin.dashboard', compact('unprocessedCount', 'processingCount', 'completedCount', 'totalCount'));
     }
 
     /**
