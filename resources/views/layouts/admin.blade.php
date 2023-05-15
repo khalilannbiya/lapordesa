@@ -112,6 +112,10 @@
             margin-bottom: 0.75em;
         }
 
+        table.dataTable {
+            margin: 0 !important;
+        }
+
         /*Change colour of responsive icon*/
         table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
         table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
@@ -139,7 +143,7 @@
             @include('components.admin.navbar')
 
             <main class="h-full overflow-y-auto">
-                <div class="container px-6 mx-auto grid">
+                <div class="container grid px-6 mx-auto">
                     @yield('title-page')
                     {{-- Content --}}
                     @yield('content')
