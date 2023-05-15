@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('title')
-<title>Data Aduan</title>
+<title>Data Masyarakat</title>
 @endsection
 
 @section('title-page')
 <h2 class="my-6 text-lg font-semibold text-gray-700 dark:text-gray-200">
-    Data Aduan
+    Data Masyarakat
 </h2>
 @endsection
 
@@ -16,10 +16,11 @@
         <table id="crudTable" class="row-border">
             <thead>
                 <tr>
-                    <th>Judul</th>
-                    <th>Kategori</th>
-                    <th>Status</th>
-                    <th>Tanggal</th>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Nomor Telp</th>
+                    <th>Alamat</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -37,15 +38,15 @@
         // responsive: true,
         scrollX: 200,
         scroller: true,
-        order: [[3, 'desc']],
         ajax:{
             url:'{!! url()->current() !!}'
         },
         columns:[
-            {data:'title', name:'title', orderable:false, width:'20%'},
-            {data:'category.category', name:'category.category', orderable:false, width:'15%'},
-            {data:'status', name:'status', orderable:false, width:'15%'},
-            {data:'created_at', name:'created_at', width:'20%'},
+            {data:'id', name:'id'},
+            {data:'name', name:'name'},
+            {data:'email', name:'email', orderable:false},
+            {data:'phone', name:'phone', orderable:false},
+            {data:'address', name:'address', orderable:false},
             {
                 data:'action',
                 name:'action',
