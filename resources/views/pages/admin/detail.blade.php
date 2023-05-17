@@ -45,9 +45,21 @@
     </label>
     <label class=" mt-4 block text-sm">
         <span class="text-gray-700 dark:text-gray-400">Status Aduan</span>
+        @if ($complaint->status === 'belum diproses')
         <input
-            class="block capitalize w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            class="block capitalize w-full mt-1 text-sm font-semibold text-red-500 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
             value="{{ $complaint->status }}" disabled />
+        @elseif ($complaint->status === 'sedang diproses')
+        <input
+            class="block capitalize w-full mt-1 text-sm font-semibold text-yellow-500 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            value="{{ $complaint->status }}" disabled />
+        @else
+        <input
+            class="block capitalize w-full mt-1 text-sm font-semibold text-green-500 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+            value="{{ $complaint->status }}" disabled />
+
+        @endif
+
     </label>
     <label class=" mt-4 block text-sm">
         <span class="text-gray-700 dark:text-gray-400">Kategori Aduan</span>
@@ -103,6 +115,11 @@
         <i class="ti ti-edit"></i>
         <span>Ubah Status</span>
     </button>
+    <a href="{{ route('staff.complaints.generate-pdf-detail', $complaint->id) }}"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-printer"></i>
+        <span>Cetak Aduan</span>
+    </a>
 </div>
 
 {{-- Modal for filling out response form --}}
