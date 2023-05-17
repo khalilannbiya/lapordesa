@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Complaint;
 use Illuminate\Http\Request;
 use App\Http\Requests\ComplaintRequest;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ComplaintController extends Controller
@@ -146,5 +148,19 @@ class ComplaintController extends Controller
 
         Alert::toast("<strong>Berhasil Ubah Status!</strong>", 'success')->toHtml()->timerProgressBar();
         return redirect()->back();
+    }
+
+    /**
+     * Generate PDF the specified resource in storage.
+     */
+    public function generatePDFDetail(Complaint $complaint)
+    {
+        $data = [
+            'complaint' => $complaint,
+            'date' => Carbon::now()
+        ];
+
+        $pdf = Pdf::loadView('pages.pdf.generate-detail-complaint', $data)->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif'])->setPaper('a4', 'potrait');
+        return $pdf->download("Data Aduan " . $complaint->user->name . ".pdf");
     }
 }
