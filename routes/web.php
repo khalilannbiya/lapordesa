@@ -33,9 +33,10 @@ Route::middleware([
         'role:complainant'
     ])->name('complainant.')->group(function () {
         Route::resource('complaints', ComplaintController::class);
+        Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
     });
 
-    // Complainant
+    // Staff
     Route::middleware([
         'role:staff'
     ])->name('staff.')->prefix('staff')->group(function () {

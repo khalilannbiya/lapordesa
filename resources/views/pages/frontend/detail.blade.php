@@ -114,7 +114,7 @@
             }}</p>
     </div>
     <div class="flex justify-center mt-5 md:mt-11 xl:mt-20">
-        <a href="#"
+        <a href="{{ route('complainant.complaints.generate-pdf-detail', $complaint->id) }}"
             class="px-4 md:px-9 py-2 md:py-3 text-sm md:text-xl lg:text-lg bg-black text-white border-2 border-black active:border-vermillion active:bg-vermillion active:shadow-xl rounded-md lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Cetak
             ke PDF</a>
     </div>
