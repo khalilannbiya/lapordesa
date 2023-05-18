@@ -20,7 +20,6 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
-Route::view('/views', 'pages.pdf.generate-detail-complaint');
 
 Route::middleware([
     'auth:sanctum',
@@ -48,6 +47,7 @@ Route::middleware([
         Route::put('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])->name('complaints.update-status');
         Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy');
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
+        Route::get('/report/generate-pdf', [ComplaintController::class, 'generatePDFAll'])->name('complaints.generate-pdf-all');
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
