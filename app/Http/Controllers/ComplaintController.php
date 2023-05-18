@@ -163,4 +163,33 @@ class ComplaintController extends Controller
         $pdf = Pdf::loadView('pages.pdf.generate-detail-complaint', $data)->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif'])->setPaper('a4', 'potrait');
         return $pdf->download("Data Aduan " . $complaint->user->name . ".pdf");
     }
+
+    /**
+     * Generate PDF the specified resource in storage.
+     */
+    public function generatePDFAll(Request $request)
+    {
+        // $complaints = Complaint::latest()->get();
+        // $date = Carbon::now();
+        $complaints = Complaint::latest()->get();
+
+        if ($request->has(['start-date', 'end-date'])) {
+            $startDate = $request->date('start-date');
+            $endDate = $request->date('end-date');
+            $complaints = Complaint::whereBetween('created_at', [$startDate, $endDate])->latest()->get();
+        }
+
+        $data = [
+            'complaints' => $complaints,
+            'date' => Carbon::now()
+        ];
+
+        $pdf = Pdf::loadView('pages.pdf.generate-complaints', $data)
+            ->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif'])
+            ->setPaper('a4', 'potrait');
+
+        return $pdf->download("Data Aduan.pdf");
+
+        // return view('pages.pdf.generate-complaints', compact('complaints', 'date'));
+    }
 }

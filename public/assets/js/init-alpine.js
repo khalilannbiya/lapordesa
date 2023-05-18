@@ -63,10 +63,40 @@ function data() {
         trapCleanupStatus: null,
         openModalStatus() {
             this.isModalStatusOpen = true;
-            this.trapCleanup = focusTrap(document.querySelector("#modalStatus"));
+            this.trapCleanup = focusTrap(
+                document.querySelector("#modalStatus")
+            );
         },
         closeModalStatus() {
             this.isModalStatusOpen = false;
+            this.trapCleanup();
+        },
+
+        // Modal Generate Complaint by Date
+        isModalPrintByDateOpen: false,
+        trapCleanupStatus: null,
+        openModalPrintByDate() {
+            this.isModalPrintByDateOpen = true;
+            this.trapCleanup = focusTrap(
+                document.querySelector("#modalPrintByDate")
+            );
+        },
+        closeModalPrintByDate() {
+            this.isModalPrintByDateOpen = false;
+            this.trapCleanup();
+        },
+
+        // Modal Search by Date
+        isModalSearchByDateOpen: false,
+        trapCleanupStatus: null,
+        openModalSearchByDate() {
+            this.isModalSearchByDateOpen = true;
+            this.trapCleanup = focusTrap(
+                document.querySelector("#modalSearchByDate")
+            );
+        },
+        closeModalSearchByDate() {
+            this.isModalSearchByDateOpen = false;
             this.trapCleanup();
         },
     };

@@ -52,12 +52,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.users.index', 'staff.users.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.users.index') }}">
-                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-                        </path>
-                    </svg>
+                    <i class="ti ti-users text-lg"></i>
                     <span class="ml-4">Masyarakat</span>
                 </a>
             </li>
@@ -70,11 +65,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.categories.index']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.categories.index') }}">
-                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                        <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                    </svg>
+                    <i class="ti ti-category text-lg"></i>
                     <span class="ml-4">Kategori</span>
                 </a>
             </li>
@@ -200,12 +191,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.users.index', 'staff.users.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.users.index') }}">
-                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-                        </path>
-                    </svg>
+                    <i class="ti ti-users text-lg"></i>
                     <span class="ml-4">Masyarakat</span>
                 </a>
             </li>
@@ -218,11 +204,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.categories.index']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.categories.index') }}">
-                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                        <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                    </svg>
+                    <i class="ti ti-category text-lg"></i>
                     <span class="ml-4">Kategori</span>
                 </a>
             </li>
