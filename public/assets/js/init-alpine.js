@@ -99,5 +99,19 @@ function data() {
             this.isModalSearchByDateOpen = false;
             this.trapCleanup();
         },
+
+        // Modal Search by Month
+        isModalSearchByMonthOpen: false,
+        trapCleanupStatus: null,
+        openModalSearchByMonth() {
+            this.isModalSearchByMonthOpen = true;
+            this.trapCleanup = focusTrap(
+                document.querySelector("#modalSearchByMonth")
+            );
+        },
+        closeModalSearchByMonth() {
+            this.isModalSearchByMonthOpen = false;
+            this.trapCleanup();
+        },
     };
 }

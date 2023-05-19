@@ -11,37 +11,40 @@
 @endsection
 
 @section('content')
-<div class="flex flex-col flex-wrap justify-between mb-8 space-y-4 md:flex-row md:items-end md:space-x-4">
-    <div class="flex flex-col flex-wrap space-y-4 md:flex-row md:items-end md:space-x-4">
-        <a href="{{ route('staff.complaints.generate-pdf-all') }}"
-            class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-            <i class="ti ti-printer"></i>
-            <span>Cetak Aduan</span>
-        </a>
-        <button @click="openModalPrintByDate"
-            class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-            <i class="ti ti-printer"></i>
-            <span>Cetak berdasarkan tanggal</span>
-        </button>
-        <button @click="openModalSearchByDate"
-            class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-            <i class="ti ti-search"></i>
-            <span>Cari Aduan per Tanggal</span>
-        </button>
-    </div>
-    <form class="block mt-4 text-sm" action="{{ route('staff.complaints.index') }}" method="get">
+<div class="flex flex-col flex-wrap mb-8 space-y-4 md:flex-row md:items-end md:space-x-4">
+    <a href="{{ route('staff.complaints.generate-pdf-all') }}"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-printer"></i>
+        <span>Cetak Aduan</span>
+    </a>
+    <button @click="openModalPrintByDate"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-printer"></i>
+        <span>Cetak berdasarkan tanggal</span>
+    </button>
+    <button @click="openModalSearchByDate"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-search"></i>
+        <span>Cari Sesuai Tanggal</span>
+    </button>
+    <button @click="openModalSearchByMonth"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-search"></i>
+        <span>Cari Sesuai Bulan</span>
+    </button>
+</div>
+<div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+    <form class="block mb-4 text-sm" action="{{ route('staff.complaints.index') }}" method="get">
         <div class="relative text-gray-500 focus-within:text-purple-600">
             <input id="keyword" name="keyword"
                 class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-                placeholder="Masukan Kata Kunci" />
+                placeholder="Masukan Kata Kunci seperti Judul, Status, Kategori" />
             <button type="submit"
                 class="absolute inset-y-0 right-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-r-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 Cari
             </button>
         </div>
     </form>
-</div>
-<div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
         <table class="w-full whitespace-no-wrap">
             <thead>
@@ -106,5 +109,6 @@
 </div>
 
 @include('components.admin.modal.modal-search-by-date')
+@include('components.admin.modal.modal-search-by-month')
 @include('components.admin.modal.modal-print-pdf')
 @endsection

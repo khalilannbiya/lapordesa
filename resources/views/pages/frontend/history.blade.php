@@ -27,7 +27,7 @@
         action="{{ route('complainant.complaints.index') }}" method="GET">
         <input
             class="block mt-2 w-full md:w-1/2 rounded transition duration-500 ease-in-out ring-1 ring-black focus:outline-none focus:ring-2 focus:ring-vermillion focus:border-transparent"
-            type="text" name="keyword" placeholder="Masukkan keyword/kode unik" required>
+            type="text" name="keyword" placeholder="Masukkan keyword/kode unik">
         <div class="mt-5 lg:mt-9 flex justify-center">
             <button type="submit" class="font-bold lg:text-base px-5 lg:px-9 py-2 lg:py-3 rounded-md bg-black text-white active:bg-vermillion active:shadow-lg lg:hover:bg-vermillion lg:hover:shadow-lg
                 ">Cari Aduan</button>

@@ -13,20 +13,27 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-
         $complaints = Complaint::with(['category'])->latest()->paginate(10);
 
         if ($request->has(['keyword'])) {
             $complaints = Complaint::with(['category'])->where('title', 'like', '%' . $request->keyword . '%')
                 ->orWhere('status', 'like', '%' . $request->keyword . '%')
-                ->orWhereHas('category', function ($query) use ($request) {
-                    $query->where('category', 'like', '%' . $request->keyword . '%');
+                ->orWhereHas('category', function ($categoryQuery) use ($request) {
+                    $categoryQuery->where('category', 'like', '%' . $request->keyword . '%');
                 })
                 ->latest()->paginate(10);
         } elseif ($request->has(['start-date', 'end-date'])) {
             $startDate = $request->date('start-date');
             $endDate = $request->date('end-date');
             $complaints = Complaint::whereBetween('created_at', [$startDate, $endDate])->latest()->paginate(10);
+        } elseif ($request->has(['month'])) {
+            $month = $request->month; // example => "2023-06"
+            $dateParts = explode("-", $month); // example => ["2023", "06"]
+            $year = $dateParts[0]; // example => "2023"
+            $month = $dateParts[1]; // example => "06"
+
+            $complaints = Complaint::whereMonth('created_at', $month)
+                ->whereYear('created_at', $year)->latest()->paginate(10);
         }
 
         return view('pages.admin.index', compact('complaints'));
