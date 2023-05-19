@@ -113,5 +113,19 @@ function data() {
             this.isModalSearchByMonthOpen = false;
             this.trapCleanup();
         },
+
+        // Modal Search by Year
+        isModalSearchByYearOpen: false,
+        trapCleanupStatus: null,
+        openModalSearchByYear() {
+            this.isModalSearchByYearOpen = true;
+            this.trapCleanup = focusTrap(
+                document.querySelector("#modalSearchByYear")
+            );
+        },
+        closeModalSearchByYear() {
+            this.isModalSearchByYearOpen = false;
+            this.trapCleanup();
+        },
     };
 }

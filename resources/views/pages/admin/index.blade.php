@@ -32,6 +32,11 @@
         <i class="ti ti-search"></i>
         <span>Cari Sesuai Bulan</span>
     </button>
+    <button @click="openModalSearchByYear"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-search"></i>
+        <span>Cari Sesuai Tahun</span>
+    </button>
 </div>
 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
     <form class="block mb-4 text-sm" action="{{ route('staff.complaints.index') }}" method="get">
@@ -109,6 +114,7 @@
 </div>
 
 @include('components.admin.modal.modal-search-by-date')
+@include('components.admin.modal.modal-search-by-year')
 @include('components.admin.modal.modal-search-by-month')
 @include('components.admin.modal.modal-print-pdf')
 @endsection
