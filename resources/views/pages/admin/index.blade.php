@@ -11,12 +11,17 @@
 @endsection
 
 @section('content')
-<div class="flex flex-col flex-wrap mb-8 space-y-4 md:flex-row md:items-end md:space-x-4">
+<div class="flex flex-col flex-wrap justify-start mb-8 gap-4 md:flex-row md:items-end">
     <a href="{{ route('staff.complaints.generate-pdf-all') }}"
         class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-printer"></i>
         <span>Cetak Aduan</span>
     </a>
+    <button @click="openModalPrintByMonth"
+        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-printer"></i>
+        <span>Cetak Bulanan</span>
+    </button>
     <button @click="openModalPrintByDate"
         class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-printer"></i>
@@ -113,6 +118,7 @@
     {{ $complaints->links('components.admin.pagination') }}
 </div>
 
+@include('components.admin.modal.modal-print-by-month')
 @include('components.admin.modal.modal-search-by-date')
 @include('components.admin.modal.modal-search-by-year')
 @include('components.admin.modal.modal-search-by-month')
