@@ -127,5 +127,19 @@ function data() {
             this.isModalSearchByYearOpen = false;
             this.trapCleanup();
         },
+
+        // Modal Print by Month
+        isModalPrintByMonthOpen: false,
+        trapCleanupStatus: null,
+        openModalPrintByMonth() {
+            this.isModalPrintByMonthOpen = true;
+            this.trapCleanup = focusTrap(
+                document.querySelector("#modalPrintByMonth")
+            );
+        },
+        closeModalPrintByMonth() {
+            this.isModalPrintByMonthOpen = false;
+            this.trapCleanup();
+        },
     };
 }

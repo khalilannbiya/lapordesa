@@ -171,13 +171,24 @@ class ComplaintController extends Controller
     {
         // $complaints = Complaint::latest()->get();
         // $date = Carbon::now();
-        $complaints = Complaint::latest()->get();
+        $complaints = Complaint::latest();
 
         if ($request->has(['start-date', 'end-date'])) {
             $startDate = $request->date('start-date');
             $endDate = $request->date('end-date');
-            $complaints = Complaint::whereBetween('created_at', [$startDate, $endDate])->latest()->get();
+
+            $complaints = $complaints->whereBetween('created_at', [$startDate, $endDate]);
+        } elseif ($request->has(['month'])) {
+            $month = $request->month; // example => "2023-06"
+            $dateParts = explode("-", $month); // example => ["2023", "06"]
+            $year = $dateParts[0]; // example => "2023"
+            $month = $dateParts[1]; // example => "06"
+
+            $complaints = $complaints->whereMonth('created_at', $month)
+                ->whereYear('created_at', $year);
         }
+
+        $complaints = $complaints->get();
 
         $data = [
             'complaints' => $complaints,
