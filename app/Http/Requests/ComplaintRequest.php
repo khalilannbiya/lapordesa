@@ -26,7 +26,7 @@ class ComplaintRequest extends FormRequest
             'title' => 'required|string|max:50',
             'body' => 'required|string',
             'category' => 'required|numeric',
-            'photo' => 'image',
+            'photo' => 'image|mimes:jpg,png,jpeg',
         ];
     }
 
@@ -43,6 +43,7 @@ class ComplaintRequest extends FormRequest
             'body.required' => 'Isi aduan tidak boleh kosong!',
             'category.required' => 'Kategori tidak boleh kosong!',
             'photo.image' => 'File harus berupa foto!',
+            'photo.mimes' => 'Foto harus berupa jpg, png, jpeg!',
         ];
     }
 }
