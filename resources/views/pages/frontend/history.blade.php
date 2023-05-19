@@ -78,5 +78,8 @@
         @endforelse
 
     </div>
+    <div class="mt-5 md:mt-10">
+        {{ $complaints->links() }}
+    </div>
 </section>
 @endsection
