@@ -186,6 +186,10 @@ class ComplaintController extends Controller
 
             $complaints = $complaints->whereMonth('created_at', $month)
                 ->whereYear('created_at', $year);
+        } elseif ($request->has('year')) {
+            $yearInput = $request->year;
+
+            $complaints = $complaints->whereYear('created_at', $yearInput);
         }
 
         $complaints = $complaints->get();
