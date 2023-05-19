@@ -17,14 +17,14 @@ class ComplaintController extends Controller
      */
     public function index(Request $request)
     {
+        $complaints = Complaint::where('user_id', auth()->user()->id)->latest();
+
         if ($request->has('keyword')) {
-            $complaints = Complaint::where('user_id', auth()->user()->id)
-                ->where('title', 'like', '%' . $request->keyword . '%')
-                ->orWhere('unic_code', $request->keyword)
-                ->latest()->get();
-        } else {
-            $complaints = Complaint::where('user_id', auth()->user()->id)->latest()->get();
+            $complaints = $complaints->where('title', 'like', '%' . $request->keyword . '%')
+                ->orWhere('unic_code', $request->keyword);
         }
+
+        $complaints = $complaints->paginate(5);
         return view('pages.frontend.history', compact('complaints'));
     }
 
