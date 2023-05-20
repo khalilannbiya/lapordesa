@@ -25,6 +25,8 @@
 
     @if (auth()->user()->role_id === 3)
     @include('components.frontend.header')
+    @else
+    @include('navigation-menu')
     @endif
 
     <div class="min-h-screen bg-gray-100">
