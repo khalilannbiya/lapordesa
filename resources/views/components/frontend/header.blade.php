@@ -59,14 +59,7 @@
                     class="{{ Route::current()->getName() == 'profile.show' ? 'text-vermillion' : 'text-black' }} md:text-lg lg:text-sm hover:text-vermillion transition-all duration-500">Pengaturan</a>
             </li>
 
-            {{-- Logout Button --}}
-            {{-- <li>
-                <form method="POST" action="{{ route('logout') }}" x-data>
-                    @csrf
-                    <button type="submit"
-                        class="flex justify-center items-center w-32 md:w-40 lg:w-28 h-11 lg:h-9 md:text-lg lg:text-sm border-2 border-black active:border-vermillion active:shadow-xl active:bg-vermillion lg:hover:shadow-xl lg:hover:border-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500 bg-black lg:hover:bg-vermillion rounded-md text-white lg:hover:text-white">Logout</button>
-                </form>
-            </li> --}}
+
             @else
             <li>
                 <a href="{{ route('staff.dashboard.index') }}"
