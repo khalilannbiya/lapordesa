@@ -34,10 +34,15 @@
 
                 <!-- Profile menu -->
                 <li class="relative">
-                    <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                    <button class="align-middle rounded-full px-4 py-2 focus:shadow-outline-purple focus:outline-none"
                         @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                         aria-haspopup="true">
-                        <h3>SK</h3>
+                        @php
+                        $name = auth()->user()->name;
+                        $nameParts = explode(" ", $name);
+                        $username = $nameParts[0][0];
+                        @endphp
+                        {{ $username }}
                     </button>
                     <template x-if="isProfileMenuOpen">
                         <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
