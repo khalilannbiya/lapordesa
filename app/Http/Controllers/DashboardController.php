@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Category;
 use App\Models\Complaint;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -22,9 +24,15 @@ class DashboardController extends Controller
         $completedCount =  Complaint::where('status', 'selesai')->count();
 
         // Jumlah data keseluruhan
-        $totalCount = Complaint::query()->count();
+        $totalCount = Complaint::count();
 
-        return view('pages.admin.dashboard', compact('unprocessedCount', 'processingCount', 'completedCount', 'totalCount'));
+        // Jumlah Masyarakat
+        $totalComplainant = User::where('role_id', 3)->count();
+
+        // Jumlah Kategori
+        $totalCategory = Category::count();
+
+        return view('pages.admin.dashboard', compact('unprocessedCount', 'processingCount', 'completedCount', 'totalCount', 'totalComplainant', 'totalCategory'));
     }
 
     /**
