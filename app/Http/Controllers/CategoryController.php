@@ -11,16 +11,16 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->ajax()) {
+        $categories = Category::latest();
 
-            // Menampilkan seluruh data kategori
-            $query = Category::query()->latest()->get();
-            return DataTables::of($query)
-                ->make();
+        if ($request->has(['keyword'])) {
+            $categories = $categories->where('category', 'like', '%' . $request->keyword . '%');
         }
-        return view('pages.admin.category-index');
+
+        $categories = $categories->paginate(10);
+        return view('pages.admin.category-index', compact('categories'));
     }
 
     /**
