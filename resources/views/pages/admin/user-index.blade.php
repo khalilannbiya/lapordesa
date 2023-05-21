@@ -11,50 +11,58 @@
 @endsection
 
 @section('content')
-<div class="w-full overflow-hidden rounded-lg shadow-xs">
-    <div class="">
-        <table id="crudTable" class="row-border">
+<div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+    <form class="block mb-4 text-sm" action="{{ route('staff.users.index') }}" method="get">
+        <div class="relative text-gray-500 focus-within:text-purple-600">
+            <input id="keyword" name="keyword"
+                class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+                placeholder="Masukan Kata Kunci seperti Nama, Email, Nomor Telp" />
+            <button type="submit"
+                class="absolute inset-y-0 right-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-r-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                Cari
+            </button>
+        </div>
+    </form>
+    <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Nomor Telp</th>
-                    <th>Alamat</th>
-                    <th>Actions</th>
+                <tr
+                    class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Nama</th>
+                    <th class="px-4 py-3">Email</th>
+                    <th class="px-4 py-3">No.HP</th>
+                    <th class="px-4 py-3">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                @forelse ($users as $user)
+                <tr class="text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3 text-sm">
+                        {{ $user->name }}
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        {{ $user->email }}
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        {{ $user->phone }}
+                    </td>
+                    <td class="px-4 py-3">
+                        <div class="flex items-center space-x-4 text-sm">
+                            <a href="{{ route('staff.users.show', $user->id) }}"
+                                class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                aria-label="Detail">
+                                <i class="ti ti-eye-filled"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <p class="text-white">Belum ada data</p>
+                @endforelse
+
             </tbody>
         </table>
     </div>
+    {{ $users->links('components.admin.pagination') }}
 </div>
 @endsection
-
-@push('script')
-<script>
-    // AJAX Datatable
-    var datatable = $('#crudTable').DataTable({
-        // responsive: true,
-        scrollX: 200,
-        scroller: true,
-        ajax:{
-            url:'{!! url()->current() !!}'
-        },
-        columns:[
-            {data:'id', name:'id'},
-            {data:'name', name:'name'},
-            {data:'email', name:'email', orderable:false},
-            {data:'phone', name:'phone', orderable:false},
-            {data:'address', name:'address', orderable:false},
-            {
-                data:'action',
-                name:'action',
-                orderable:false,
-                searchable:false,
-                width:'30%'
-            }
-        ]
-    });
-</script>
-@endpush

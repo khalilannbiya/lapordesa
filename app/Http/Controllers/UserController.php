@@ -5,32 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->ajax()) {
+        $users = User::where('role_id', 3)->latest();
 
-            // Tampilkan user yang hanya role === 'complainant'
-            $query = User::where('role_id', 3)->latest()->get();
-            return DataTables::of($query)
-                ->addColumn('action', function ($item) {
-                    return '
-                    <div>
-                        <a href="' . route('staff.users.show', $item->id) . '" class="inline-flex items-center justify-between mr-2 px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" aria-label="Like">
-                            <i class="ti ti-eye-filled"></i>
-                        </a>
-                    </div>
-                ';
+        if ($request->has(['keyword'])) {
+            $users = $users->where('name', 'like', '%' . $request->keyword . '%')
+                ->orWhere(function (Builder $query) use ($request) {
+                    $query->where('role_id', 3)
+                        ->where('email', 'like', '%' . $request->keyword . '%');
                 })
-                ->rawColumns(['action'])
-                ->make();
+                ->orWhere(function (Builder $query) use ($request) {
+                    $query->where('role_id', 3)
+                        ->where('phone', 'like', '%' . $request->keyword . '%');
+                });
         }
-        return view('pages.admin.user-index');
+
+        $users = $users->paginate(10);
+        return view('pages.admin.user-index', compact('users'));
     }
 
     /**
