@@ -54,6 +54,12 @@ Route::middleware([
 
         Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     });
+
+    Route::middleware([
+        'role:admin'
+    ])->name('admin.')->prefix('admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    });
 });
 
 Route::middleware([

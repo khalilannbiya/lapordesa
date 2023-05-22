@@ -6,7 +6,11 @@
 
 @section('title-page')
 <h2 class="my-6 text-lg font-semibold text-gray-700 dark:text-gray-200">
-    Dashboard
+    @if (auth()->user()->role_id === 1 )
+    Dashboard Admin
+    @else
+    Dashboard Staff
+    @endif
 </h2>
 @endsection
 
@@ -23,7 +27,7 @@
                 Belum Diproses
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {{ $unprocessedCount }}
+                {{ $cards['unprocessedCount'] }}
             </p>
         </div>
     </div>
@@ -39,7 +43,7 @@
                 Aduan Diproses
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {{ $processingCount }}
+                {{ $cards['processingCount'] }}
             </p>
         </div>
     </div>
@@ -54,7 +58,7 @@
                 Aduan Selesai
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {{ $completedCount }}
+                {{ $cards['completedCount'] }}
             </p>
         </div>
     </div>
@@ -70,22 +74,7 @@
                 Total Aduan
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {{ $totalCount }}
-            </p>
-        </div>
-    </div>
-
-    {{-- Card --}}
-    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-        <div class="px-3 py-2 mr-4 text-sky-500 bg-sky-100 rounded-full p- dark:text-sky-100 dark:bg-sky-500">
-            <i class="ti ti-users text-xl"></i>
-        </div>
-        <div>
-            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                Jumlah Pelapor
-            </p>
-            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {{ $totalComplainant }}
+                {{ $cards['totalCount'] }}
             </p>
         </div>
     </div>
@@ -94,16 +83,171 @@
     <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
         <div
             class="px-3 py-2 mr-4 text-purple-500 bg-purple-100 rounded-full p- dark:text-purple-100 dark:bg-purple-500">
-            <i class="ti ti-category text-xl"></i>
+            <i class="text-xl ti ti-category"></i>
         </div>
         <div>
             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                 Jumlah Kategori
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {{ $totalCategory }}
+                {{ $cards['totalCategory'] }}
             </p>
         </div>
     </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="px-3 py-2 mr-4 rounded-full text-sky-500 bg-sky-100 p- dark:text-sky-100 dark:bg-sky-500">
+            <i class="text-xl ti ti-users"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Jumlah Pelapor
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['totalComplainant'] }}
+            </p>
+        </div>
+    </div>
+
+    @if (auth()->user()->role_id === 1)
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="px-3 py-2 mr-4 text-pink-500 bg-pink-100 rounded-full p- dark:text-pink-100 dark:bg-pink-500">
+            <i class="text-xl ti ti-users"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Jumlah User
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['totalUser'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="px-3 py-2 mr-4 rounded-full text-slate-500 bg-slate-100 p- dark:text-slate-100 dark:bg-slate-500">
+            <i class="text-xl ti ti-users"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Jumlah Staff
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['totalStaff'] }}
+            </p>
+        </div>
+    </div>
+
+    {{-- Card --}}
+    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="px-3 py-2 mr-4 rounded-full text-lime-500 bg-lime-100 p- dark:text-lime-100 dark:bg-lime-500">
+            <i class="text-xl ti ti-users"></i>
+        </div>
+        <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                Jumlah Admin
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                {{ $cards['totalAdmin'] }}
+            </p>
+        </div>
+    </div>
+    @endif
 </div>
+
+{{-- Table --}}
+@if (auth()->user()->role_id === 1)
+<div class="grid gap-6 mb-8 md:grid-cols-2">
+    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+        <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+            Data Aduan Terbaru
+        </h4>
+        <div class="w-full overflow-x-auto">
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr
+                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Judul</th>
+                        <th class="px-4 py-3">Kategori</th>
+                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Tanggal</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @forelse ($complaints as $complaint)
+                    <tr class="text-gray-700 dark:text-gray-400">
+                        <td class="px-4 py-3 text-sm">
+                            {{ $complaint->title }}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{ $complaint->category->category }}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            @if ($complaint->status === 'belum diproses')
+                            <p class="text-red-500 capitalize">{{ $complaint->status }}</p>
+                            @elseif ($complaint->status === 'sedang diproses')
+                            <p class="text-yellow-500 capitalize">{{ $complaint->status }}</p>
+                            @else
+                            <p class="text-green-500 capitalize">{{ $complaint->status }}</p>
+                            @endif
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{ $complaint->created_at->format('d/m/Y') }}
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td class="p-2 text-sm font-semibold text-center text-slate-400" colspan="4">Belum Ada Data</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+        <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+            Data User Terbaru
+        </h4>
+        <div class="w-full overflow-x-auto">
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr
+                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Nama</th>
+                        <th class="px-4 py-3">Email</th>
+                        <th class="px-4 py-3">Role</th>
+                        <th class="px-4 py-3">No.HP</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @forelse ($users as $user)
+                    <tr class="text-gray-700 dark:text-gray-400">
+                        <td class="px-4 py-3 text-sm">
+                            {{ $user->name }}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{ $user->email }}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{ $user->role->role }}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{ $user->phone }}
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td class="p-2 text-sm font-semibold text-center text-slate-400" colspan="4">Belum Ada Data</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endif
 @endsection

@@ -14,26 +14,50 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Jumlah data complaint dengan status "belum diproses"
-        $unprocessedCount = Complaint::where('status', 'belum diproses')->count();
+        $cards = collect([[
+            // Jumlah data complaint dengan status "belum diproses"
+            'unprocessedCount' => Complaint::where('status', 'belum diproses')->count(),
 
-        // Jumlah data complaint dengan status "sedang diproses"
-        $processingCount = Complaint::where('status', 'sedang diproses')->count();
+            // Jumlah data complaint dengan status "sedang diproses"
+            'processingCount' => Complaint::where('status', 'sedang diproses')->count(),
 
-        // Jumlah data complaint dengan status "telah selesai"
-        $completedCount =  Complaint::where('status', 'selesai')->count();
+            // Jumlah data complaint dengan status "telah selesai"
+            'completedCount' => Complaint::where('status', 'selesai')->count(),
 
-        // Jumlah data keseluruhan
-        $totalCount = Complaint::count();
+            // Jumlah data keseluruhan
+            'totalCount' => Complaint::count(),
 
-        // Jumlah Masyarakat
-        $totalComplainant = User::where('role_id', 3)->count();
+            // Jumlah Kategori
+            'totalCategory' => Category::count(),
 
-        // Jumlah Kategori
-        $totalCategory = Category::count();
+            // Jumlah Masyarakat
+            'totalComplainant' => User::where('role_id', 3)->count(),
+        ]]);
 
-        return view('pages.admin.dashboard', compact('unprocessedCount', 'processingCount', 'completedCount', 'totalCount', 'totalComplainant', 'totalCategory'));
+        if (auth()->user()->role_id === 1) {
+            $cards->push([
+                'totalUser' => User::count(),
+            ]);
+            $cards->push([
+                'totalStaff' =>  User::where('role_id', 2)->count(),
+            ]);
+            $cards->push([
+                'totalAdmin' => User::where('role_id', 1)->count()
+            ]);
+
+            $complaints = Complaint::take(5)->latest()->get();
+
+            $users = User::take(5)->latest()->get();
+
+            $cards = $cards->collapse();
+
+            return view('pages.admin.dashboard', compact('cards', 'complaints', 'users'));
+        }
+
+        $cards = $cards->collapse();
+        return view('pages.admin.dashboard', compact('cards'));
     }
+
 
     /**
      * Show the form for creating a new resource.
