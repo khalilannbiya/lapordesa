@@ -26,10 +26,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'role_id' => $this->faker->randomElement([2, 3]),
+            'role_id' => $this->faker->randomElement([3]),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'phone' => $this->faker->unique()->phoneNumber(),
+            'phone' => $this->faker->unique()->phoneNumber(12),
             'address' => $this->faker->address(),
             'password' => bcrypt('123456789'),
             'created_at' => now(),
