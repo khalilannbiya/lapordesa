@@ -24,7 +24,9 @@
             </button>
         </header>
         <!-- Modal body -->
-        <form action="{{ route('staff.complaints.update-status', $complaint->id) }}" method="post">
+        <form
+            action="{{ auth()->user()->role_id === 2 ? route('staff.complaints.update-status', $complaint->id) : route('admin.complaints.update-status', $complaint->id) }}"
+            method="post">
             @csrf
             @method('PUT')
             <div class="mt-4 mb-6">
@@ -35,7 +37,7 @@
                 <!-- Modal description -->
                 <label class="block mt-4 text-sm">
                     <select id="status" name="status" required
-                        class="block capitalize w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        class="block w-full mt-1 text-sm capitalize dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         @foreach ($status as $item)
                         @if ($item === $complaint->status)
                         <option class="capitalize" value="{{ $item }}" selected>{{ $item }}

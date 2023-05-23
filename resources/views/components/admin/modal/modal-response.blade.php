@@ -23,7 +23,9 @@
             </button>
         </header>
         <!-- Modal body -->
-        <form action="{{ route('staff.complaints.update-response', $complaint->id) }}" method="post">
+        <form
+            action="{{ auth()->user()->role_id === 2 ? route('staff.complaints.update-response', $complaint->id) : route('admin.complaints.update-response', $complaint->id) }}"
+            method="post">
             @csrf
             @method('PUT')
             <div class="mt-4 mb-6">
@@ -35,8 +37,8 @@
                 <label class="block mt-4 text-sm">
                     <textarea id="response" name="response"
                         class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="6" placeholder="Masukkan Respon disini."
-                        required>{{ old('response') ? old('response') : $complaint->response }}</textarea>
+                        rows="6"
+                        placeholder="Masukkan Respon disini.">{{ old('response') ? old('response') : $complaint->response }}</textarea>
                     @error('title')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
