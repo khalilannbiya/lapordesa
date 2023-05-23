@@ -1,20 +1,25 @@
 @extends('layouts.admin')
 
 @section('title')
-<title>Data Masyarakat</title>
+<title>Data Petugas</title>
 @endsection
 
 @section('title-page')
 <h2 class="my-6 text-lg font-semibold text-gray-700 dark:text-gray-200">
-    Data Masyarakat
+    Data Petugas
 </h2>
 @endsection
 
 @section('content')
+<div class="flex flex-col flex-wrap justify-start gap-4 mb-8 md:flex-row md:items-end">
+    <a href="{{ route('admin.users.create') }}"
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <i class="ti ti-user-plus"></i>
+        <span>Tambah Petugas</span>
+    </a>
+</div>
 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
-    <form class="block mb-4 text-sm"
-        action="{{ auth()->user()->role_id === 2 ? route('staff.users.index') : route('admin.users.index') }}"
-        method="get">
+    <form class="block mb-4 text-sm" action="{{ route('admin.users.get-officer') }}" method="get">
         <div class="relative text-gray-500 focus-within:text-purple-600">
             <input id="keyword" name="keyword"
                 class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
@@ -32,7 +37,7 @@
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">Nama</th>
                     <th class="px-4 py-3">Email</th>
-                    <th class="px-4 py-3">No.HP</th>
+                    <th class="px-4 py-3">Role</th>
                     <th class="px-4 py-3">Actions</th>
                 </tr>
             </thead>
@@ -45,8 +50,8 @@
                     <td class="px-4 py-3 text-sm">
                         {{ $user->email }}
                     </td>
-                    <td class="px-4 py-3 text-sm">
-                        {{ $user->phone }}
+                    <td class="px-4 py-3 text-sm capitalize">
+                        {{ $user->role->role }}
                     </td>
                     <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -55,7 +60,6 @@
                                 aria-label="Detail">
                                 <i class="ti ti-eye-filled"></i>
                             </a>
-                            @if (auth()->user()->role_id !== 2)
                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
                                 @csrf
                                 @method('delete')
@@ -66,7 +70,6 @@
                                     <i class="ti ti-trash-filled"></i>
                                 </button>
                             </form>
-                            @endif
                         </div>
                     </td>
                 </tr>

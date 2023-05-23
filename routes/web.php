@@ -68,6 +68,11 @@ Route::middleware([
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
         Route::get('/report/generate-pdf', [ComplaintController::class, 'generatePDFAll'])->name('complaints.generate-pdf-all');
 
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/officer', [UserController::class, 'getStaffAndAdminData'])->name('users.get-officer');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
         Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     });
 });

@@ -20,12 +20,12 @@ class ComplaintFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 3,
+            'user_id' => $this->faker->numberBetween(1, 15),
             'category_id' => $this->faker->numberBetween(1, 16),
             'title' => $this->faker->text(40),
             'body' => $this->faker->paragraphs(3, true),
             'status' => $this->faker->randomElement(['belum diproses', 'sedang diproses', 'selesai']),
-            'response' => 'Lorem Ipsum',
+            'response' => null,
             'photo_url' => null,
             'unic_code' => $this->faker->unique()->numberBetween(000000, 999999),
             'created_at' => now(),
