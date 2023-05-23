@@ -28,13 +28,14 @@
         <ul>
             <li class="relative px-6 py-3">
 
-                @if (in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show']))
+                @if (in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show',
+                'admin.complaints.index', 'admin.complaints.show']))
                 <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
                 @endif
 
-                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
-                    href="{{ route('staff.complaints.index') }}">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show', 'admin.complaints.index', 'admin.complaints.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
+                    href="{{ auth()->user()->role_id === 2 ? route('staff.complaints.index') : route('admin.complaints.index') }}">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path
@@ -53,7 +54,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.users.index', 'staff.users.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.users.index') }}">
-                    <i class="ti ti-users text-lg"></i>
+                    <i class="text-lg ti ti-users"></i>
                     <span class="ml-4">Masyarakat</span>
                 </a>
             </li>
@@ -66,7 +67,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.categories.index']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.categories.index') }}">
-                    <i class="ti ti-category text-lg"></i>
+                    <i class="text-lg ti ti-category"></i>
                     <span class="ml-4">Kategori</span>
                 </a>
             </li>
@@ -147,13 +148,13 @@
         <ul class="mt-6">
             <li class="relative px-6 py-3">
 
-                @if (Route::current()->getName() == 'staff.dashboard.index')
+                @if (in_array(Route::current()->getName(), ['staff.dashboard.index', 'admin.dashboard.index']))
                 <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
                 @endif
 
-                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ Route::current()->getName() == 'staff.dashboard.index' ? 'text-gray-800 dark:text-gray-100' : '' }}"
-                    href="{{ route('staff.dashboard.index') }}">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-zgray-200 {{ in_array(Route::current()->getName(), ['staff.dashboard.index', 'admin.dashboard.index']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
+                    href="{{ auth()->user()->role_id === 2 ? route('staff.dashboard.index') : route('admin.dashboard.index') }}">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path
@@ -167,13 +168,14 @@
         <ul>
             <li class="relative px-6 py-3">
 
-                @if (in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show']))
+                @if (in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show',
+                'admin.complaints.index', 'admin.complaints.show']))
                 <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
                 @endif
 
-                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
-                    href="{{ route('staff.complaints.index') }}">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.complaints.index', 'staff.complaints.show', 'admin.complaints.index', 'admin.complaints.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
+                    href="{{ auth()->user()->role_id === 2 ? route('staff.complaints.index') : route('admin.complaints.index') }}">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path
@@ -192,7 +194,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.users.index', 'staff.users.show']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.users.index') }}">
-                    <i class="ti ti-users text-lg"></i>
+                    <i class="text-lg ti ti-users"></i>
                     <span class="ml-4">Masyarakat</span>
                 </a>
             </li>
@@ -205,7 +207,7 @@
 
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ in_array(Route::current()->getName(), ['staff.categories.index']) ? 'text-gray-800 dark:text-gray-100' : '' }}"
                     href="{{ route('staff.categories.index') }}">
-                    <i class="ti ti-category text-lg"></i>
+                    <i class="text-lg ti ti-category"></i>
                     <span class="ml-4">Kategori</span>
                 </a>
             </li>

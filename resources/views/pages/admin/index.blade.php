@@ -11,45 +11,47 @@
 @endsection
 
 @section('content')
-<div class="flex flex-col flex-wrap justify-start mb-8 gap-4 md:flex-row md:items-end">
-    <a href="{{ route('staff.complaints.generate-pdf-all') }}"
-        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+<div class="flex flex-col flex-wrap justify-start gap-4 mb-8 md:flex-row md:items-end">
+    <a href="{{ auth()->user()->role_id === 2 ? route('staff.complaints.generate-pdf-all') : route('admin.complaints.generate-pdf-all') }}"
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-printer"></i>
         <span>Cetak Aduan</span>
     </a>
     <button @click="openModalPrintByMonth"
-        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-printer"></i>
         <span>Cetak Bulanan</span>
     </button>
     <button @click="openModalPrintByYear"
-        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-printer"></i>
         <span>Cetak Tahunan</span>
     </button>
     <button @click="openModalPrintByDate"
-        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-printer"></i>
         <span>Cetak berdasarkan tanggal</span>
     </button>
     <button @click="openModalSearchByDate"
-        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-search"></i>
         <span>Cari Sesuai Tanggal</span>
     </button>
     <button @click="openModalSearchByMonth"
-        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-search"></i>
         <span>Cari Sesuai Bulan</span>
     </button>
     <button @click="openModalSearchByYear"
-        class="flex items-center gap-2 px-4 py-2 justify-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
         <i class="ti ti-search"></i>
         <span>Cari Sesuai Tahun</span>
     </button>
 </div>
 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
-    <form class="block mb-4 text-sm" action="{{ route('staff.complaints.index') }}" method="get">
+    <form class="block mb-4 text-sm"
+        action="{{ auth()->user()->role_id === 2 ? route('staff.complaints.index') : route('admin.complaints.index') }}"
+        method="get">
         <div class="relative text-gray-500 focus-within:text-purple-600">
             <input id="keyword" name="keyword"
                 class="block w-full pr-20 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
@@ -95,12 +97,14 @@
                     </td>
                     <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
-                            <a href="{{ route('staff.complaints.show', $complaint->id) }}"
+                            <a href="{{ auth()->user()->role_id === 2 ? route('staff.complaints.show', $complaint->id) : route('admin.complaints.show', $complaint->id) }}"
                                 class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                 aria-label="Detail">
                                 <i class="ti ti-eye-filled"></i>
                             </a>
-                            <form action="{{ route('staff.complaints.destroy', $complaint->id) }}" method="post">
+                            <form
+                                action="{{ auth()->user()->role_id === 2 ? route('staff.complaints.destroy', $complaint->id) : route('admin.complaints.destroy', $complaint->id) }}"
+                                method="post">
                                 @csrf
                                 @method('delete')
                                 <button onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
@@ -114,7 +118,9 @@
                     </td>
                 </tr>
                 @empty
-                <p class="text-white">Belum ada data</p>
+                <tr>
+                    <td class="p-2 text-sm font-semibold text-center text-slate-400" colspan="5">Belum Ada Data</td>
+                </tr>
                 @endforelse
 
             </tbody>
@@ -130,3 +136,8 @@
 @include('components.admin.modal.modal-search-by-month')
 @include('components.admin.modal.modal-print-pdf')
 @endsection
+
+@push('script')
+<!-- You need focus-trap.js to make the modal accessible -->
+<script src="./assets/js/focus-trap.js" defer></script>
+@endpush

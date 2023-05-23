@@ -112,7 +112,7 @@ class ComplaintController extends Controller
         $complaint->delete();
 
         Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
-        return redirect()->route('staff.complaints.index');
+        return redirect()->back();
     }
 
     /**
@@ -122,6 +122,8 @@ class ComplaintController extends Controller
     {
         $request->validate([
             'response' => 'required|string',
+        ], [
+            'response.required' => 'Isikan Response terlebih dahulu!'
         ]);
 
 
@@ -140,6 +142,8 @@ class ComplaintController extends Controller
     {
         $request->validate([
             'status' => 'required|string',
+        ], [
+            'status.required' => 'Pilih status terlebih dahulu!'
         ]);
 
         $data = $request->all();

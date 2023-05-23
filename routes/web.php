@@ -59,6 +59,16 @@ Route::middleware([
         'role:admin'
     ])->name('admin.')->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+        Route::get('/complaints', [AdminController::class, 'index'])->name('complaints.index');
+        Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show');
+        Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy');
+        Route::put('/complaints/{complaint}/response', [ComplaintController::class, 'updateResponse'])->name('complaints.update-response');
+        Route::put('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])->name('complaints.update-status');
+        Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
+        Route::get('/report/generate-pdf', [ComplaintController::class, 'generatePDFAll'])->name('complaints.generate-pdf-all');
+
+        Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     });
 });
 

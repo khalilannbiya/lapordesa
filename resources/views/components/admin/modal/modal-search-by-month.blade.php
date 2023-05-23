@@ -24,7 +24,9 @@
             </button>
         </header>
         <!-- Modal body -->
-        <form action="{{ route('staff.complaints.index') }}" method="get">
+        <form
+            action="{{ auth()->user()->role_id === 2 ? route('staff.complaints.index') : route('admin.complaints.index') }}"
+            method="get">
             <div class="mt-4 mb-6">
                 <!-- Modal title -->
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
