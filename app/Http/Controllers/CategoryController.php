@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
@@ -36,7 +37,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category' => 'required|string|max:20|unique:categories',
+        ], [
+            'category.required' => 'Isikan Category terlebih dahulu!',
+            'category.max' => 'Kalimat kategori terlalu panjang!',
+            'category.unique' => 'Kategori sudah ada sebelumnya!'
+        ]);
+
+        $data = $request->all();
+
+        Category::create($data);
+
+        Alert::toast("<strong>Anda sudah menambahkan Kategori!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->back();
     }
 
     /**
@@ -66,8 +80,11 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        Alert::toast("<strong>Data Berhasil Dihapus!</strong>", 'success')->toHtml()->timerProgressBar();
+        return redirect()->back();
     }
 }
