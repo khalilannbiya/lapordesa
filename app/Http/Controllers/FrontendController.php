@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complaint;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FrontendController extends Controller
 {
@@ -60,5 +62,23 @@ class FrontendController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function tracking(Request $request)
+    {
+        $unicCode = implode("",  $request->all());
+
+        $complaint = Complaint::where('unic_code', $unicCode)->first();
+
+        if (!$complaint) {
+            Alert::toast("<strong>Data yang anda cari tidak ada!</strong>", 'error')->toHtml()->timerProgressBar();
+
+            return redirect()->back();
+        }
+
+        return view('pages.frontend.detail', compact('complaint'));
     }
 }

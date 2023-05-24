@@ -13,31 +13,31 @@
 
 {{-- Jumbotron --}}
 <section
-    class="flex flex-col justify-center items-center relative overflow-x-hidden gap-7 md:gap-12 lg:gap-12 px-6 md:px-10 lg:px-24 2xl:px-48 h-screen">
-    <h1 class="text-5xl md:text-7xl xl:text-7xl font-bold">Lapor<span class="text-vermillion">Desa</span></h1>
+    class="relative flex flex-col items-center justify-center h-screen px-6 overflow-x-hidden gap-7 md:gap-12 lg:gap-12 md:px-10 lg:px-24 2xl:px-48">
+    <h1 class="text-5xl font-bold md:text-7xl xl:text-7xl">Lapor<span class="text-vermillion">Desa</span></h1>
     <p
-        class="text-center font-medium md:px-20 lg:px-32 text-davys-grey text-xs md:text-base lg:text-sm leading-5 md:leading-8 lg:leading-7">
+        class="text-xs font-medium leading-5 text-center md:px-20 lg:px-32 text-davys-grey md:text-base lg:text-sm md:leading-8 lg:leading-7">
         Kami percaya
         pelayanan
         yang baik
         dimulai dari partisipasi aktif masyarakat. Bergabunglah dalam sistem pengaduan ini untuk memperbaiki
         pelayanan desa dan membangun desa yang lebih baik bersama-sama.</p>
-    <div class="flex flex-wrap-reverse gap-4 md:gap-7 lg:gap-6 justify-center font-semibold">
+    <div class="flex flex-wrap-reverse justify-center gap-4 font-semibold md:gap-7 lg:gap-6">
 
         @guest
         <a href="#lacak"
-            class="px-5 py-2 md:px-10 md:py-3 lg:text-lg border-2 border-black active:border-vermillion active:shadow-xl active:text-vermillion   md:text-xl rounded-md lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Lacak
+            class="px-5 py-2 border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Lacak
             Aduan</a>
         @endguest
 
         @auth
         @if (auth()->user()->role->role === 'complainant')
         <a href="{{ route('complainant.complaints.index') }}"
-            class="px-5 py-2 md:px-10 md:py-3 lg:text-lg border-2 border-black active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl rounded-md lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Riwayat</a>
+            class="px-5 py-2 border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:shadow-xl active:text-vermillion md:text-xl lg:hover:border-vermillion lg:hover:shadow-xl lg:hover:text-vermillion lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Riwayat</a>
         @endif
         @endauth
         <a href="{{ auth()->user() ? route('complainant.complaints.create') : route('login') }}"
-            class="px-5 py-2 md:px-10 md:py-3 lg:text-lg bg-black text-white border-2 border-black active:border-vermillion active:bg-vermillion active:shadow-xl  md:text-xl rounded-md lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Laporkan!</a>
+            class="px-5 py-2 text-white bg-black border-2 border-black rounded-md md:px-10 md:py-3 lg:text-lg active:border-vermillion active:bg-vermillion active:shadow-xl md:text-xl lg:hover:bg-vermillion lg:hover:border-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500">Laporkan!</a>
     </div>
     <img class="absolute w-2/3 md:w-96 xl:w-[32rem] left-[-30%] md:-left-32 xl:-left-60 top-[3%] md:top-14 xl:top-9 -z-10"
         src="{{ asset('assets/icons/vector-1.png') }}" alt="Icon">
@@ -47,32 +47,33 @@
 
 @guest
 {{-- Input Unic Code --}}
-<section id="lacak" class="px-6 md:px-10 lg:px-24 2xl:px-48 py-16 md:py-28 lg:py-36 overflow-x-hidden md:bg-white">
-    <div class="relative md:border-2 border-black md:py-11 md:px-8 lg:px-12 md:rounded-md md:shadow-4xl">
-        <h1 class="font-semibold text-3xl md:text-5xl text-center">Lacak aduan Anda!</h1>
+<section id="lacak" class="px-6 py-16 overflow-x-hidden md:px-10 lg:px-24 2xl:px-48 md:py-28 lg:py-36 md:bg-white">
+    <div class="relative border-black md:border-2 md:py-11 md:px-8 lg:px-12 md:rounded-md md:shadow-4xl">
+        <h1 class="text-3xl font-semibold text-center md:text-5xl">Lacak aduan Anda!</h1>
         <p
-            class="text-xs xl:px-32 md:text-base lg:text-sm text-center text-davys-grey mt-6 md:mt-7 leading-5 md:leading-8 lg:leading-8">
+            class="mt-6 text-xs leading-5 text-center xl:px-32 md:text-base lg:text-sm text-davys-grey md:mt-7 md:leading-8 lg:leading-8">
             Gunakan kode unik untuk cek kemajuan tindak lanjut aduan Anda. Kode ini diperoleh saat mengirim
             aduan, cek kembali detail aduan yang dikirim.</p>
-        <form class="mt-6 md:mt-7 flex flex-wrap justify-center flex-col md:flex-row gap-7" action="" method="POST">
-            <div id="otp" class="flex flex-wrap gap-2 md:gap-4 justify-center items-center">
-                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" type="text" id="first" name="first"
-                    maxlength=" 1" />
-                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" type="text" id="second"
+        <form class="flex flex-col flex-wrap justify-center mt-6 md:mt-7 md:flex-row gap-7"
+            action="{{ route('complaints.track') }}" method="get">
+            <div id="otp" class="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" required type="text" id="first"
+                    name="first" maxlength=" 1" />
+                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" required type="text" id="second"
                     name="second" maxlength="1" />
-                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" type="text" id="third" name="third"
-                    maxlength=" 1" />
+                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" required type="text" id="third"
+                    name="third" maxlength=" 1" />
                 <span class="font-medium md:text-lg">-</span>
-                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" type="text" id="fourth"
+                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" required type="text" id="fourth"
                     name="fourth" maxlength="1" />
-                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" type="text" id="fifth" name="fifth"
-                    maxlength=" 1" />
-                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" type="text" id="sixth" name="sixth"
-                    maxlength=" 1" />
+                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" required type="text" id="fifth"
+                    name="fifth" maxlength=" 1" />
+                <input class="aspect-square w-[13%] md:w-14 text-center shadow-3xl" required type="text" id="sixth"
+                    name="sixth" maxlength=" 1" />
             </div>
             <button
-                class="py-2 md:py-4 md:px-8 lg:px-10 bg-black text-white font-semibold rounded-md active:shadow-lg active:bg-vermillion lg:hover:bg-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500"
-                type="submit" name="lacak">Lacak</button>
+                class="py-2 font-semibold text-white bg-black rounded-md md:py-4 md:px-8 lg:px-10 active:shadow-lg active:bg-vermillion lg:hover:bg-vermillion lg:hover:shadow-xl lg:transition-all lg:duration-500 lg:hover:transition-all lg:hover:duration-500"
+                type="submit">Lacak</button>
         </form>
         <img class="absolute top-0 left-0 w-[5%] md:w-24 lg:w-32 md:-top-7 lg:-top-10 md:-left-6 lg:-left-10"
             src="{{ asset('assets/icons/star.png') }}" alt="Icon Star">
@@ -82,12 +83,12 @@
 
 {{-- Cards How To Report --}}
 <section id="cara"
-    class="px-6 md:px-10 lg:px-24 2xl:px-48 py-16 md:py-28 lg:py-36 flex md:flex-wrap flex-col md:flex-row gap-7 md:gap-3 lg:gap-6 md:justify-center">
+    class="flex flex-col px-6 py-16 md:px-10 lg:px-24 2xl:px-48 md:py-28 lg:py-36 md:flex-wrap md:flex-row gap-7 md:gap-3 lg:gap-6 md:justify-center">
     <div
         class="flex flex-col gap-2 lg:gap-4 md:w-24 md:flex-wrap md:grow items-center justify-center px-5 md:px-6 py-8 md:py-6 border-2 border-black rounded-md shadow-[6px_6px_0px_#cd4631]">
         <i class="ti ti-ballpen text-vermillion font-medium text-[3rem] md:text-[2rem] lg:text-[3rem]"></i>
-        <h3 class="font-semibold text-lg md:text-base lg:text-lg text-davys-grey text-center">Tulis Aduan</h3>
-        <p class="text-center text-sm md:text-xs lg:text-sm leading-6 lg:leading-6 text-davys-grey">Silakan
+        <h3 class="text-lg font-semibold text-center md:text-base lg:text-lg text-davys-grey">Tulis Aduan</h3>
+        <p class="text-sm leading-6 text-center md:text-xs lg:text-sm lg:leading-6 text-davys-grey">Silakan
             sampaikan aduan
             Anda secara
             jelas dan
@@ -96,8 +97,8 @@
     <div
         class="flex flex-col gap-2 lg:gap-4 md:w-24 md:flex-wrap md:grow items-center justify-center px-5 md:px-6 py-8 md:py-6 border-2 border-black rounded-md shadow-[6px_6px_0px_#cd4631]">
         <i class="ti ti-loader text-vermillion font-medium text-[3rem] md:text-[2rem] lg:text-[3rem]"></i>
-        <h3 class="font-semibold text-lg md:text-base lg:text-lg text-davys-grey text-center">Tindak Lanjut</h3>
-        <p class="text-center text-sm md:text-xs lg:text-sm leading-6 lg:leading-6 text-davys-grey">Aduan Anda
+        <h3 class="text-lg font-semibold text-center md:text-base lg:text-lg text-davys-grey">Tindak Lanjut</h3>
+        <p class="text-sm leading-6 text-center md:text-xs lg:text-sm lg:leading-6 text-davys-grey">Aduan Anda
             akan
             langsung
             kami
@@ -108,8 +109,8 @@
     <div
         class="flex flex-col gap-2 lg:gap-4 md:w-24 md:flex-wrap md:grow items-center justify-center px-5 md:px-6 py-8 md:py-6 border-2 border-black rounded-md shadow-[6px_6px_0px_#cd4631]">
         <i class="ti ti-discount-check text-vermillion font-medium text-[3rem] md:text-[2rem] lg:text-[3rem]"></i>
-        <h3 class="font-semibold text-lg md:text-base lg:text-lg text-davys-grey text-center">Selesai</h3>
-        <p class="text-center text-sm md:text-xs lg:text-sm leading-6 lg:leading-6 text-davys-grey">Kami akan
+        <h3 class="text-lg font-semibold text-center md:text-base lg:text-lg text-davys-grey">Selesai</h3>
+        <p class="text-sm leading-6 text-center md:text-xs lg:text-sm lg:leading-6 text-davys-grey">Kami akan
             menutup aduan
             Anda setelah
             tindak
@@ -120,9 +121,9 @@
 
 {{-- About Us --}}
 <section id="about"
-    class="flex justify-center gap-9 md:gap-14 lg:gap-16 flex-col px-6 md:px-10 lg:px-24 2xl:px-48 py-16 md:py-28 lg:py-36 md:bg-white overflow-x-hidden">
+    class="flex flex-col justify-center px-6 py-16 overflow-x-hidden gap-9 md:gap-14 lg:gap-16 md:px-10 lg:px-24 2xl:px-48 md:py-28 lg:py-36 md:bg-white">
     <div class="relative">
-        <h2 class="font-semibold text-3xl md:text-5xl text-center">Tentang Kami</h2>
+        <h2 class="text-3xl font-semibold text-center md:text-5xl">Tentang Kami</h2>
         <img class="w-[10%] md:w-16 lg:w-14 absolute left-[5%] md:left-[14%] lg:left-[30%] -top-5 md:-top-9"
             src="{{ asset('assets/icons/vector-2.png') }}" alt="Icon">
     </div>

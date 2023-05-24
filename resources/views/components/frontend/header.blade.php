@@ -14,15 +14,16 @@
             {{-- Before Login --}}
             @guest
             <li>
-                <a href="#"
+                <a href="{{ route('index') }}"
                     class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion active">Beranda</a>
             </li>
             <li>
-                <a href="#lacak"
+                <a href="{{ route('index') }}#lacak"
                     class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Lacak</a>
             </li>
             <li>
-                <a href="#about" class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Tentang
+                <a href="{{ route('index') }}#about"
+                    class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Tentang
                     Kami</a>
             </li>
             <li>
