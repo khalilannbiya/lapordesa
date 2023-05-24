@@ -20,6 +20,7 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/complaints/track', [FrontendController::class, 'tracking'])->name('complaints.track');
 
 Route::middleware([
     'auth:sanctum',
