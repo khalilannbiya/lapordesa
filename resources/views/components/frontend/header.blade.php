@@ -15,16 +15,17 @@
             @guest
             <li>
                 <a href="{{ route('index') }}"
-                    class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion active">Beranda</a>
-            </li>
-            <li>
-                <a href="{{ route('index') }}#lacak"
-                    class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Lacak</a>
+                    class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion active {{ in_array(Route::current()->getName(), ['index' ]) ? 'text-vermillion' : '' }}">Beranda</a>
             </li>
             <li>
                 <a href="{{ route('index') }}#about"
                     class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion">Tentang
                     Kami</a>
+            </li>
+            <li>
+                <a href="{{ route('complaints.public') }}"
+                    class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion {{ in_array(Route::current()->getName(), ['complaints.public' ]) ? 'text-vermillion' : '' }}">Aduan
+                    Public</a>
             </li>
             <li>
                 <a href="{{ route('register') }}"

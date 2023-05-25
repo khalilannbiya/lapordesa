@@ -65,6 +65,8 @@ class ComplaintController extends Controller
             'status' => 'belum diproses',
             'photo_url' => $photo,
             'unic_code' => $randomNumber,
+            'is_private' => $request->is_private ? $request->is_private : '0',
+            'is_anonymous' => $request->is_anonymous ? $request->is_anonymous : '0',
         ]);
 
         Alert::toast("<strong>Data Berhasil Dikirim!</strong>", 'success')->toHtml()->timerProgressBar();

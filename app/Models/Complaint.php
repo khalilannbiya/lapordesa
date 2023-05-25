@@ -25,6 +25,8 @@ class Complaint extends Model
         'photo_url',
         'response',
         'unic_code',
+        'is_private',
+        'is_anonymous',
     ];
 
     public function user()
