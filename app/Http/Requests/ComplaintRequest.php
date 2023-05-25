@@ -27,6 +27,8 @@ class ComplaintRequest extends FormRequest
             'body' => 'required|string',
             'category' => 'required|numeric',
             'photo' => 'image|mimes:jpg,png,jpeg',
+            "is_private" => 'boolean',
+            "is_anonymous" => 'boolean'
         ];
     }
 

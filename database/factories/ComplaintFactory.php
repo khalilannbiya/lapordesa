@@ -28,6 +28,8 @@ class ComplaintFactory extends Factory
             'response' => null,
             'photo_url' => null,
             'unic_code' => $this->faker->unique()->numberBetween(000000, 999999),
+            'is_private' => $this->faker->randomElement([true, false]),
+            'is_anonymous' => $this->faker->randomElement([true, false]),
             'created_at' => now(),
             'updated_at' => now(),
         ];

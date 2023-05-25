@@ -35,9 +35,9 @@ class FrontendController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Complaint $complaint)
     {
-        //
+        return view('pages.frontend.detail-public', compact('complaint'));
     }
 
     /**
@@ -65,7 +65,7 @@ class FrontendController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Tracking Complaints.
      */
     public function tracking(Request $request)
     {
@@ -80,5 +80,11 @@ class FrontendController extends Controller
         }
 
         return view('pages.frontend.detail', compact('complaint'));
+    }
+
+    public function publicComplaints()
+    {
+        $complaints = Complaint::where('is_private', 0)->latest()->paginate(10);
+        return view('pages.frontend.public-complaints', compact('complaints'));
     }
 }
