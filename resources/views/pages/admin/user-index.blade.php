@@ -59,7 +59,8 @@
                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
+                                <button
+                                    onclick="return confirm('Jika Anda menghapus pengguna ini, maka semua aduan yang atas nama pengguna ini akan terhapus. Apakah Anda yakin?')"
                                     type="submit"
                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                     aria-label="Delete">

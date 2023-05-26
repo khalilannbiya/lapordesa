@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'role_id' => $this->faker->randomElement([3]),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'phone' => $this->faker->unique()->phoneNumber(12),
+            'phone' => $this->faker->unique()->numerify('############'),
             'address' => $this->faker->address(),
             'password' => bcrypt('123456789'),
             'created_at' => now(),
