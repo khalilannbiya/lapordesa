@@ -20,7 +20,7 @@ class ComplaintFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(4, 15),
+            'user_id' => $this->faker->numberBetween(3, 15),
             'category_id' => $this->faker->numberBetween(1, 16),
             'title' => $this->faker->text(40),
             'body' => $this->faker->paragraphs(3, true),

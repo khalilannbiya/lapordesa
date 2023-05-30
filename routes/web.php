@@ -35,6 +35,7 @@ Route::middleware([
         'role:complainant'
     ])->name('complainant.')->group(function () {
         Route::resource('complaints', ComplaintController::class);
+        Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show')->middleware('checkAccessComplaint');
         Route::get('/complaints/{complaint}/generate-pdf', [ComplaintController::class, 'generatePDFDetail'])->name('complaints.generate-pdf-detail');
     });
 
