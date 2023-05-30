@@ -12,9 +12,9 @@
 @section('content')
 
 {{-- Jumbotron --}}
-<section
+<section id="up"
     class="relative flex flex-col items-center justify-center h-screen px-6 overflow-x-hidden gap-7 md:gap-12 lg:gap-12 md:px-10 lg:px-24 2xl:px-48">
-    <h1 class="text-5xl font-bold md:text-7xl xl:text-7xl">Lapor<span class="text-vermillion">Desa</span></h1>
+    <h1 id="up" class="text-5xl font-bold md:text-7xl xl:text-7xl">Lapor<span class="text-vermillion">Desa</span></h1>
     <p
         class="text-xs font-medium leading-5 text-center md:px-20 lg:px-32 text-davys-grey md:text-base lg:text-sm md:leading-8 lg:leading-7">
         Kami percaya

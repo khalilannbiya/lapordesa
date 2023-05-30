@@ -2,8 +2,8 @@
     {{-- -- Navbar Before Login -- --}}
     <nav id="navbar"
         class="fixed top-0 left-0 z-10 flex items-center justify-between w-full px-6 py-3 md:py-5 lg:py-2 md:px-10 lg:px-24 2xl:px-48">
-        <div class="">
-            <a class="" href="#">
+        <div>
+            <a href="{{ route('index') }}#up">
                 <img class="w-[2.5rem] md:w-16 lg:w-16" src="{{ asset('assets/images/logo.png') }}"
                     alt="Logo LaporDesa" />
             </a>
@@ -14,7 +14,7 @@
             {{-- Before Login --}}
             @guest
             <li>
-                <a href="{{ route('index') }}"
+                <a href="{{ route('index') }}#up"
                     class="transition-all duration-500 md:text-lg lg:text-sm hover:text-vermillion active {{ in_array(Route::current()->getName(), ['index' ]) ? 'text-vermillion' : '' }}">Beranda</a>
             </li>
             <li>

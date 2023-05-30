@@ -15,21 +15,21 @@
             <ul>
                 <li
                     class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
-                    <a href="{{ route('index') }}">Beranda</a>
+                    <a href="{{ route('index') }}#up">Beranda</a>
                 </li>
 
                 @guest
                 <li
                     class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
-                    <a href="#lacak">Lacak Aduan</a>
+                    <a href="{{ route('index') }}#lacak">Lacak Aduan</a>
                 </li>
                 <li
                     class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300 mb-2">
-                    <a href="#cara">Tata Cara</a>
+                    <a href="{{ route('index') }}#cara">Tata Cara</a>
                 </li>
                 <li
                     class="text-medium text-base md:text-lg lg:text-sm lg:hover:text-vermillion active:text-vermillion transition-all duration-300">
-                    <a href="#about">Tentang Kami</a>
+                    <a href="{{ route('index') }}#about">Tentang Kami</a>
                 </li>
                 @endguest
 
