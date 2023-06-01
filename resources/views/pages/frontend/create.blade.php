@@ -36,7 +36,7 @@
         <div>
             <label for="title" class="font-bold">Judul Aduan <span class="text-vermillion">*</span></label>
             <input type="text" id="title" name="title" value="{{ old('title') }}" placeholder=" Masukan Judul Aduan"
-                autofocus
+                autofocus maxlength="50"
                 class="w-full mt-2 transition duration-500 ease-in-out rounded ring-1 ring-black focus:outline-none focus:ring-2 focus:ring-vermillion focus:border-transparent">
             @error('title')
             <p class="mt-2 text-sm font-medium text-red-500">{{ $message }}</p>
