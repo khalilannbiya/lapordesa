@@ -49,7 +49,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        Alert::toast("<strong>Anda sudah menambahkan Kategori!</strong>", 'success')->toHtml()->timerProgressBar();
+        Alert::toast("<strong>Anda berhasil menambahkan Kategori!</strong>", 'success')->toHtml()->timerProgressBar();
         return redirect()->back();
     }
 

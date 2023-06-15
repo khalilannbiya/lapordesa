@@ -24,9 +24,9 @@ class UserRequest extends FormRequest
     {
         return [
             'role_id' => 'required|integer|in:2,1',
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|regex:/^[^0-9]+$/',
             'email' => 'required|string|email|max:50|unique:users',
-            'phone' => 'required|string|max:15',
+            'phone' => 'required|string|max:15|regex:/^[0-9]+$/',
             'address' => 'required|string',
             'password' => 'required|string|confirmed|min:8',
         ];
