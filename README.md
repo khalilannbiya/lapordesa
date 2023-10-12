@@ -67,10 +67,20 @@ Generate key
   php artisan key:generate
 ```
 
-Migrate database
+You can also run the command "php artisan migrate --seed" to execute the seeders that have been created, such as "Role," "User," and "Categories." This way, you can use the system directly without setting up role, user, and category data. 
+
+```bash
+  php artisan migrate --seed
+```
+
+If you only use "php artisan migrate" without the "--seed" option, you must run the command "php artisan db:seed --class=RoleSeeder" to be able to register an account without SQL errors.
 
 ```bash
   php artisan migrate
+```
+then
+```bash
+  php artisan db:seed --class=RoleSeeder
 ```
 
 Install node_modules
