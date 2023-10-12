@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->uuid('id');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('category_id');
             $table->string('title', 50);
             $table->text('body');
             $table->enum('status', ['belum diproses', 'sedang diproses', 'selesai']);
@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('unic_code', 6);
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
         });
     }
 
