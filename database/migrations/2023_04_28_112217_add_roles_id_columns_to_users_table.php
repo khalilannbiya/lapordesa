@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')->constrained('roles')->onDelete('restrict')->change();
+            $table->unsignedInteger('role_id')->after('id');
+
+            $table->foreign('role_id')->references('id')->on('roles')->restrictOnDelete();
         });
     }
 
