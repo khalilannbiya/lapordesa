@@ -108,7 +108,13 @@ Run serve
 
 ## Features
 
-for now, i can't share the features
+- Login
+- Register
+- User Management
+- Submit a Complaint
+- Track Complaint with Unique Code for Residents
+- Complaint Management by Admin (View Details, Delete Complaint)
+- And many more
 
 
 ## Feedback
