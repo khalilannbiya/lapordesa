@@ -83,6 +83,12 @@ then
   php artisan db:seed --class=RoleSeeder
 ```
 
+Create Symlink
+
+```bash
+  php artisan storage:link
+```
+
 Install node_modules
 
 ```bash
